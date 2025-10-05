@@ -1,5 +1,7 @@
-import { marked, Marked } from "marked";
+import { Marked } from "marked";
 import markedFootnote from "marked-footnote";
+import { markedSmartypants } from "marked-smartypants";
+import { gfmHeadingId } from "marked-gfm-heading-id";
 
 const REPO_OWNER = "NixOS";
 const REPO_NAME = "SC-election-2025";
@@ -50,30 +52,25 @@ const mentionExtension = {
   },
 };
 
-marked.use({
-  extensions: [issueExtension, mentionExtension],
-  gfm: true,
-  headerIds: true,
-  mangle: false,
-});
+function configureMarked(footnotePrefix?: string) {
+  const instance = new Marked();
+  instance.use(gfmHeadingId());
+  instance.use(markedSmartypants());
+  if (footnotePrefix) {
+    instance.use(markedFootnote({ prefixId: footnotePrefix }));
+  }
+  instance.use({
+    extensions: [issueExtension, mentionExtension],
+    gfm: true,
+  });
+  return instance;
+}
 
 export function renderMarkdown(
   content: string | null,
   options?: { footnotePrefix?: string }
 ): string {
   if (!content) return "";
-
-  if (options?.footnotePrefix) {
-    const customMarked = new Marked();
-    customMarked.use(markedFootnote({ prefixId: options.footnotePrefix }));
-    customMarked.use({
-      extensions: [issueExtension, mentionExtension],
-      gfm: true,
-      headerIds: true,
-      mangle: false,
-    });
-    return customMarked.parse(content) as string;
-  }
-
-  return marked(content) as string;
+  const marked = configureMarked(options?.footnotePrefix);
+  return marked.parse(content) as string;
 }

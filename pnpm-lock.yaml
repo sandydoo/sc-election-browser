@@ -54,6 +54,12 @@ importers:
       marked-footnote:
         specifier: ^1.4.0
         version: 1.4.0(marked@16.3.0)
+      marked-gfm-heading-id:
+        specifier: ^4.1.2
+        version: 4.1.2(marked@16.3.0)
+      marked-smartypants:
+        specifier: ^1.1.10
+        version: 1.1.10(marked@16.3.0)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^6.1.0
@@ -1683,6 +1689,16 @@ packages:
     peerDependencies:
       marked: '>=7.0.0'
 
+  marked-gfm-heading-id@4.1.2:
+    resolution: {integrity: sha512-EQ1WiEGHJh0C8viU+hbXbhHyWTDgEia2i96fiSemm2wdYER6YBw/9QI5TB6YFTqFfmMOxBFXPcPJtlgD0fVV2w==}
+    peerDependencies:
+      marked: '>=13 <17'
+
+  marked-smartypants@1.1.10:
+    resolution: {integrity: sha512-XGK59M2nhy3Jpa0kdWSXQuKn908VkKbqK1IqF8Rk5QV619OWBs2/rkcg/PVhpKkADlRKJSYe6XqDMZMkZywT4g==}
+    peerDependencies:
+      marked: '>=4 <17'
+
   marked@16.3.0:
     resolution: {integrity: sha512-K3UxuKu6l6bmA5FUwYho8CfJBlsUWAooKtdGgMcERSpF7gcBUrCGsLH7wDaaNOzwq18JzSUDyoEb/YsrqMac3w==}
     engines: {node: '>= 20'}
@@ -2021,6 +2037,10 @@ packages:
   sirv@3.0.2:
     resolution: {integrity: sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==}
     engines: {node: '>=18'}
+
+  smartypants@0.2.2:
+    resolution: {integrity: sha512-TzobUYoEft/xBtb2voRPryAUIvYguG0V7Tt3de79I1WfXgCwelqVsGuZSnu3GFGRZhXR90AeEYIM+icuB/S06Q==}
+    hasBin: true
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -3626,6 +3646,16 @@ snapshots:
     dependencies:
       marked: 16.3.0
 
+  marked-gfm-heading-id@4.1.2(marked@16.3.0):
+    dependencies:
+      github-slugger: 2.0.0
+      marked: 16.3.0
+
+  marked-smartypants@1.1.10(marked@16.3.0):
+    dependencies:
+      marked: 16.3.0
+      smartypants: 0.2.2
+
   marked@16.3.0: {}
 
   mdast-util-find-and-replace@3.0.2:
@@ -4133,6 +4163,8 @@ snapshots:
       '@polka/url': 1.0.0-next.29
       mrmime: 2.0.1
       totalist: 3.0.1
+
+  smartypants@0.2.2: {}
 
   source-map-js@1.2.1: {}
 

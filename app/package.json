@@ -20,7 +20,9 @@
     "@sc-election/db": "workspace:*",
     "drizzle-orm": "^0.44.5",
     "marked": "^16.3.0",
-    "marked-footnote": "^1.4.0"
+    "marked-footnote": "^1.4.0",
+    "marked-gfm-heading-id": "^4.1.2",
+    "marked-smartypants": "^1.1.10"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^6.1.0",
