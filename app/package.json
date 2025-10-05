@@ -1,5 +1,5 @@
 {
-  "name": "sc-election-browser",
+  "name": "@sc-election/app",
   "private": true,
   "version": "0.0.1",
   "type": "module",

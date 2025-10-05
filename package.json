@@ -2,10 +2,11 @@
   "name": "sc-election-browser",
   "private": true,
   "workspaces": [
-    "app/*",
+    "app",
     "packages/*"
   ],
   "scripts": {
+    "dev": "pnpm --filter @sc-election/app dev",
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",

@@ -13,8 +13,8 @@ node_modules
 
 # Output
 .output
-/.svelte-kit
-/build
+.svelte-kit/
+build
 dist/
 
 # Vite
