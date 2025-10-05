@@ -1,0 +1,28 @@
+{
+  "name": "@sc-election/fetcher",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "election-fetcher": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "start": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.15.15",
+    "@octokit/rest": "^21.0.2",
+    "@sc-election/db": "workspace:*",
+    "commander": "^12.1.0",
+    "drizzle-orm": "^0.44.5",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "tsup": "^8.3.5",
+    "typescript": "^5.9.2",
+    "tsx": "^4.19.2"
+  }
+}

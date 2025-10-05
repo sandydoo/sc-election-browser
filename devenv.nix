@@ -7,12 +7,17 @@
 }:
 
 {
-  env.DATABASE_URL = "file:local.db";
-
-  git-hooks.hooks = {
-    eslint.enable = true;
-    nixfmt-rfc-style.enable = true;
-    prettier.enable = true;
+  git-hooks = {
+    hooks = {
+      eslint.enable = true;
+      eslint.settings.binPath = "./node_modules/.bin/eslint";
+      nixfmt-rfc-style.enable = true;
+      prettier.enable = true;
+    };
+    excludes = [
+      ".devenv"
+      "node_modules"
+    ];
   };
 
   languages.javascript = {
@@ -24,4 +29,8 @@
   };
 
   languages.typescript.enable = true;
+
+  packages = [
+    pkgs.secretspec
+  ];
 }

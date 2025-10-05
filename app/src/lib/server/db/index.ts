@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
-import * as schema from "./schema";
+import * as schema from "@sc-election/db/schema";
 import { env } from "$env/dynamic/private";
 
 if (!env.DATABASE_URL) throw new Error("DATABASE_URL is not set");
