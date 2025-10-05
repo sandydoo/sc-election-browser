@@ -55,7 +55,7 @@ const mentionExtension = {
 function configureMarked(footnotePrefix?: string) {
   const instance = new Marked();
   instance.use(gfmHeadingId());
-  instance.use(markedSmartypants());
+  instance.use(markedSmartypants({ config: "2" }));
   if (footnotePrefix) {
     instance.use(markedFootnote({ prefixId: footnotePrefix }));
   }
