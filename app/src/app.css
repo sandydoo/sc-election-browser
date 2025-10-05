@@ -2,28 +2,28 @@
 
 @font-face {
   font-family: "Route 159";
-  src: url("/fonts/fonts/Route159-Regular.woff") format("woff");
+  src: url("/fonts/Route159-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Route 159";
-  src: url("/fonts/fonts/Route159-Italic.woff") format("woff");
+  src: url("/fonts/Route159-Italic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Route 159";
-  src: url("/fonts/fonts/Route159-Bold.woff") format("woff");
+  src: url("/fonts/Route159-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Route 159";
-  src: url("/fonts/fonts/Route159-BoldItalic.woff") format("woff");
+  src: url("/fonts/Route159-BoldItalic.woff") format("woff");
   font-weight: 700;
   font-style: italic;
 }
