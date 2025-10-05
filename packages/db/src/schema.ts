@@ -9,6 +9,8 @@ export const candidates = sqliteTable("candidates", {
   matrixHandle: text("matrix_handle", { length: 200 }),
   conflictOfInterest: text("conflict_of_interest"),
   motivation: text("motivation"),
+  whatIWillDo: text("what_i_will_do"),
+  whatIHaveDone: text("what_i_have_done"),
   personalStatement: text("personal_statement"),
   nominatedBy: text("nominated_by", { length: 100 }),
   endorsers: text("endorsers", { mode: "json" }).$type<string[]>(),

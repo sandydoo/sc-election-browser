@@ -1,1 +1,235 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Route 159";
+  src: url("/fonts/fonts/Route159-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Route 159";
+  src: url("/fonts/fonts/Route159-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Route 159";
+  src: url("/fonts/fonts/Route159-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Route 159";
+  src: url("/fonts/fonts/Route159-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@theme {
+  --font-sans: "Route 159", ui-sans-serif, system-ui, sans-serif;
+  /* Primary Colors */
+  --color-black: lch(0% 0 0);
+  --color-black-95: lch(95% 0 0);
+  --color-black-85: lch(85% 0 0);
+  --color-black-75: lch(75% 0 0);
+  --color-black-65: lch(65% 0 0);
+  --color-black-55: lch(55% 0 0);
+  --color-black-45: lch(45% 0 0);
+  --color-black-35: lch(35% 0 0);
+  --color-black-25: lch(25% 0 0);
+  --color-black-15: lch(15% 0 0);
+
+  --color-white: lch(100% 0 0);
+  --color-white-95: lch(95% 0 0);
+  --color-white-85: lch(85% 0 0);
+  --color-white-75: lch(75% 0 0);
+  --color-white-65: lch(65% 0 0);
+  --color-white-55: lch(55% 0 0);
+  --color-white-45: lch(45% 0 0);
+  --color-white-35: lch(35% 0 0);
+  --color-white-25: lch(25% 0 0);
+  --color-white-15: lch(15% 0 0);
+
+  /* Secondary Colors */
+  --color-afghani-blue: lch(55% 12 264);
+  --color-afghani-blue-95: lch(95% 2 264);
+  --color-afghani-blue-85: lch(85% 7 264);
+  --color-afghani-blue-75: lch(75% 12 264);
+  --color-afghani-blue-65: lch(65% 12 264);
+  --color-afghani-blue-55: lch(55% 11 264);
+  --color-afghani-blue-45: lch(45% 9 264);
+  --color-afghani-blue-35: lch(35% 7 264);
+  --color-afghani-blue-25: lch(25% 5 264);
+  --color-afghani-blue-15: lch(15% 3 264);
+
+  --color-argentinian-blue: lch(75% 12 240);
+  --color-argentinian-blue-95: lch(95% 2 240);
+  --color-argentinian-blue-85: lch(85% 7 240);
+  --color-argentinian-blue-75: lch(75% 12 240);
+  --color-argentinian-blue-65: lch(65% 12 240);
+  --color-argentinian-blue-55: lch(55% 11 240);
+  --color-argentinian-blue-45: lch(45% 9 240);
+  --color-argentinian-blue-35: lch(35% 7 240);
+  --color-argentinian-blue-25: lch(25% 5 240);
+  --color-argentinian-blue-15: lch(15% 3 240);
+
+  /* Accent Colors */
+  --color-italian-violet: lch(75% 12 288);
+  --color-italian-violet-95: lch(95% 2 288);
+  --color-italian-violet-85: lch(85% 7 288);
+  --color-italian-violet-75: lch(75% 12 288);
+  --color-italian-violet-65: lch(65% 12 288);
+  --color-italian-violet-55: lch(55% 11 288);
+  --color-italian-violet-45: lch(45% 9 288);
+  --color-italian-violet-35: lch(35% 7 288);
+  --color-italian-violet-25: lch(25% 5 288);
+  --color-italian-violet-15: lch(15% 3 288);
+
+  --color-indian-gold: lch(75% 12 90);
+  --color-indian-gold-95: lch(95% 3 90);
+  --color-indian-gold-85: lch(85% 7 90);
+  --color-indian-gold-75: lch(75% 12 90);
+  --color-indian-gold-65: lch(65% 12 90);
+  --color-indian-gold-55: lch(55% 11 90);
+  --color-indian-gold-45: lch(45% 9 90);
+  --color-indian-gold-35: lch(35% 7 90);
+  --color-indian-gold-25: lch(25% 5 90);
+  --color-indian-gold-15: lch(15% 3 90);
+
+  --color-chinese-magenta: lch(75% 12 330);
+  --color-chinese-magenta-95: lch(95% 4 330);
+  --color-chinese-magenta-85: lch(85% 7 330);
+  --color-chinese-magenta-75: lch(75% 12 330);
+  --color-chinese-magenta-65: lch(65% 12 330);
+  --color-chinese-magenta-55: lch(55% 11 330);
+  --color-chinese-magenta-45: lch(45% 9 330);
+  --color-chinese-magenta-35: lch(35% 7 330);
+  --color-chinese-magenta-25: lch(25% 5 330);
+  --color-chinese-magenta-15: lch(15% 3 330);
+
+  --color-persian-orange: lch(75% 12 54);
+  --color-persian-orange-95: lch(95% 2 54);
+  --color-persian-orange-85: lch(85% 7 54);
+  --color-persian-orange-75: lch(75% 12 54);
+  --color-persian-orange-65: lch(65% 12 54);
+  --color-persian-orange-55: lch(55% 11 54);
+  --color-persian-orange-45: lch(45% 9 54);
+  --color-persian-orange-35: lch(35% 7 54);
+  --color-persian-orange-25: lch(25% 5 54);
+  --color-persian-orange-15: lch(15% 3 54);
+
+  --color-zambian-green: lch(75% 12 152);
+  --color-zambian-green-95: lch(95% 3 152);
+  --color-zambian-green-85: lch(85% 7 152);
+  --color-zambian-green-75: lch(75% 12 152);
+  --color-zambian-green-65: lch(65% 12 152);
+  --color-zambian-green-55: lch(55% 11 152);
+  --color-zambian-green-45: lch(45% 9 152);
+  --color-zambian-green-35: lch(35% 7 152);
+  --color-zambian-green-25: lch(25% 5 152);
+  --color-zambian-green-15: lch(15% 3 152);
+
+  --color-norwegian-pink: lch(75% 12 16);
+  --color-norwegian-pink-95: lch(95% 2 16);
+  --color-norwegian-pink-85: lch(85% 7 16);
+  --color-norwegian-pink-75: lch(75% 12 16);
+  --color-norwegian-pink-65: lch(65% 12 16);
+  --color-norwegian-pink-55: lch(55% 11 16);
+  --color-norwegian-pink-45: lch(45% 9 16);
+  --color-norwegian-pink-35: lch(35% 7 16);
+  --color-norwegian-pink-25: lch(25% 5 16);
+  --color-norwegian-pink-15: lch(15% 3 16);
+}
+
+.prose {
+  line-height: 1.75;
+}
+
+.prose p {
+  margin-bottom: 1.25em;
+}
+
+.prose blockquote {
+  border-left: 4px solid #000;
+  padding-left: 1em;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #4a5568;
+}
+
+.prose ul,
+.prose ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin: 0.5em 0;
+}
+
+.prose a {
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  text-decoration: none;
+}
+
+.prose code {
+  background-color: #f7fafc;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.prose pre {
+  background-color: #f7fafc;
+  padding: 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.prose h1 {
+  font-size: 1.5em;
+}
+.prose h2 {
+  font-size: 1.25em;
+}
+.prose h3 {
+  font-size: 1.1em;
+}
+.prose h4 {
+  font-size: 1em;
+}
+
+.prose hr {
+  @apply border-0 border-t border-gray-300 my-6;
+}

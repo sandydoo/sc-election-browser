@@ -12,6 +12,8 @@ export interface ParsedCandidate {
   metadata: CandidateMetadata;
   conflictOfInterest: string;
   motivation: string;
+  whatIWillDo: string;
+  whatIHaveDone: string;
   fullStatement: string;
 }
 
@@ -82,6 +84,8 @@ export function parseCandidateMarkdown(
 
   let conflictOfInterest = "";
   let motivation = "";
+  let whatIWillDo = "";
+  let whatIHaveDone = "";
 
   for (const section of sections) {
     if (
@@ -96,6 +100,14 @@ export function parseCandidateMarkdown(
       /^Motivation/i.test(section)
     ) {
       motivation = section.replace(/^#{0,3}\s*Motivation[^\n]*\n+/i, "").trim();
+    } else if (/^#{1,3}\s+What I (will|would) do/i.test(section)) {
+      whatIWillDo = section
+        .replace(/^#{0,3}\s*What I (will|would) do[^\n]*\n+/i, "")
+        .trim();
+    } else if (/^#{1,3}\s+What I have done/i.test(section)) {
+      whatIHaveDone = section
+        .replace(/^#{0,3}\s*What I have done[^\n]*\n+/i, "")
+        .trim();
     }
   }
 
@@ -103,6 +115,8 @@ export function parseCandidateMarkdown(
     metadata: metadata as CandidateMetadata,
     conflictOfInterest,
     motivation,
+    whatIWillDo,
+    whatIHaveDone,
     fullStatement: markdownContent,
   };
 }

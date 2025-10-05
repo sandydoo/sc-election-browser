@@ -2,7 +2,7 @@ packages:
   - app
   - packages/*
 
-onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+onlyBuiltonlyBuiltDependencies:
+  - "@tailwindcss/oxide"
 
 updateNotifier: false

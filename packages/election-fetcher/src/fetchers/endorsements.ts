@@ -61,7 +61,10 @@ export async function fetchEndorsements() {
       const endorsers = comments
         .filter(
           (comment) =>
-            comment.body && /!endorse\b/i.test(comment.body) && comment.user,
+            comment.body &&
+            /!endorse\b/i.test(comment.body) &&
+            comment.user &&
+            comment.user.type !== "Bot",
         )
         .map((comment) => comment.user!.login.replace(/^@/, ""));
 

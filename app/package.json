@@ -18,7 +18,8 @@
   "dependencies": {
     "@libsql/client": "^0.15.15",
     "@sc-election/db": "workspace:*",
-    "drizzle-orm": "^0.44.5"
+    "drizzle-orm": "^0.44.5",
+    "marked": "^16.3.0"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^6.1.0",
@@ -31,12 +32,7 @@
     "svelte-check": "^4.3.2",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
-    "vite": "^7.1.7"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@tailwindcss/oxide",
-      "esbuild"
-    ]
+    "vite": "^7.1.7",
+    "vite-plugin-devtools-json": "^1.0.0"
   }
 }

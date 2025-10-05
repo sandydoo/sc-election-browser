@@ -1,9 +1,12 @@
 import { db } from "$lib/server/db/index.js";
 import { candidates, questions } from "@sc-election/db/schema";
-import { asc } from "drizzle-orm";
+import { asc, sql } from "drizzle-orm";
 
 export async function load() {
-  const allCandidates = await db.select().from(candidates).orderBy(asc(candidates.githubHandle));
+  const allCandidates = await db
+    .select()
+    .from(candidates)
+    .orderBy(asc(sql`LOWER(${candidates.githubHandle})`));
   const allQuestions = await db.select().from(questions);
 
   return {

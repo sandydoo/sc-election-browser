@@ -54,6 +54,8 @@ export async function fetchCandidates() {
             matrixHandle: parsed.metadata.matrixHandle || null,
             conflictOfInterest: parsed.conflictOfInterest || null,
             motivation: parsed.motivation || null,
+            whatIWillDo: parsed.whatIWillDo || null,
+            whatIHaveDone: parsed.whatIHaveDone || null,
             personalStatement: parsed.fullStatement,
           })
           .onConflictDoUpdate({
@@ -65,6 +67,8 @@ export async function fetchCandidates() {
               matrixHandle: parsed.metadata.matrixHandle || null,
               conflictOfInterest: parsed.conflictOfInterest || null,
               motivation: parsed.motivation || null,
+              whatIWillDo: parsed.whatIWillDo || null,
+              whatIHaveDone: parsed.whatIHaveDone || null,
               personalStatement: parsed.fullStatement,
               updatedAt: new Date(),
             },

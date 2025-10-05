@@ -1,4 +1,4 @@
-import { json, error } from "@sveltejs/kit";
+import { error } from "@sveltejs/kit";
 import { db } from "$lib/server/db/index.js";
 import {
   candidates,
@@ -7,7 +7,7 @@ import {
 } from "@sc-election/db/schema";
 import { eq } from "drizzle-orm";
 
-export async function GET({ params }) {
+export async function load({ params }) {
   const { handle } = params;
 
   const [candidate] = await db
@@ -37,8 +37,8 @@ export async function GET({ params }) {
     .innerJoin(questions, eq(candidateResponses.questionId, questions.id))
     .where(eq(candidateResponses.candidateId, candidate.id));
 
-  return json({
-    ...candidate,
+  return {
+    candidate,
     responses,
-  });
+  };
 }
