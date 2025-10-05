@@ -14,6 +14,7 @@
     "fetch:candidates": "pnpm --filter @sc-election/fetcher -w start fetch-candidates",
     "fetch:questions": "pnpm --filter @sc-election/fetcher -w start fetch-questions",
     "fetch:responses": "pnpm --filter @sc-election/fetcher -w start fetch-responses",
+    "fetch:endorsements": "pnpm --filter @sc-election/fetcher -w start fetch-endorsements",
     "fetch:all": "pnpm --filter @sc-election/fetcher -w start fetch-all"
   },
   "devDependencies": {

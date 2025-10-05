@@ -3,6 +3,7 @@ import { Command } from "commander";
 import { fetchCandidates } from "./fetchers/candidates.js";
 import { fetchQuestions } from "./fetchers/questions.js";
 import { fetchResponses } from "./fetchers/responses.js";
+import { fetchEndorsements } from "./fetchers/endorsements.js";
 
 const program = new Command();
 
@@ -48,6 +49,18 @@ program
   });
 
 program
+  .command("fetch-endorsements")
+  .description("Fetch endorsements from nomination PRs")
+  .action(async () => {
+    try {
+      await fetchEndorsements();
+    } catch (error) {
+      console.error("Failed to fetch endorsements:", error);
+      process.exit(1);
+    }
+  });
+
+program
   .command("fetch-all")
   .description("Fetch all election data (candidates, questions, responses)")
   .action(async () => {
@@ -58,6 +71,8 @@ program
       await fetchQuestions();
       console.log("");
       await fetchResponses();
+      console.log("");
+      await fetchEndorsements();
       console.log("\n✓ All data fetched successfully");
     } catch (error) {
       console.error("Failed to fetch data:", error);
