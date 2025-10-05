@@ -76,7 +76,9 @@
             </p>
             {#if response.response}
               <div class="prose max-w-none">
-                {@html renderMarkdown(response.response)}
+                {@html renderMarkdown(response.response, {
+                  footnotePrefix: response.candidate.githubHandle,
+                })}
               </div>
             {/if}
           </article>

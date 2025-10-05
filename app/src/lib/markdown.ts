@@ -1,4 +1,4 @@
-import { marked } from "marked";
+import { marked, Marked } from "marked";
 import markedFootnote from "marked-footnote";
 
 const REPO_OWNER = "NixOS";
@@ -50,7 +50,6 @@ const mentionExtension = {
   },
 };
 
-marked.use(markedFootnote());
 marked.use({
   extensions: [issueExtension, mentionExtension],
   gfm: true,
@@ -58,7 +57,23 @@ marked.use({
   mangle: false,
 });
 
-export function renderMarkdown(content: string | null): string {
+export function renderMarkdown(
+  content: string | null,
+  options?: { footnotePrefix?: string }
+): string {
   if (!content) return "";
+
+  if (options?.footnotePrefix) {
+    const customMarked = new Marked();
+    customMarked.use(markedFootnote({ prefixId: options.footnotePrefix }));
+    customMarked.use({
+      extensions: [issueExtension, mentionExtension],
+      gfm: true,
+      headerIds: true,
+      mangle: false,
+    });
+    return customMarked.parse(content) as string;
+  }
+
   return marked(content) as string;
 }
