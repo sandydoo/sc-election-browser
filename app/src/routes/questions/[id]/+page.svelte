@@ -1,12 +1,8 @@
 <script lang="ts">
-  import { marked } from "marked";
+  import { renderMarkdown } from "$lib/markdown";
 
   let { data } = $props();
 
-  function renderMarkdown(content: string | null) {
-    if (!content) return "";
-    return marked(content);
-  }
 </script>
 
 <div class="min-h-screen bg-white text-black font-sans">
