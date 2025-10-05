@@ -12,13 +12,11 @@
 <div class="min-h-screen bg-white text-black font-sans">
   <header class="py-12 px-8">
     <div class="max-w-7xl mx-auto">
-      <a href="/" class="text-sm underline mb-4 block"
-        >← Back to all candidates</a
-      >
+      <a href="/" class="mb-4 block">← Back to home</a>
       <h1 class="text-5xl font-bold tracking-tight mb-2">
         {data.candidate.name}
       </h1>
-      <p class="text-2xl text-gray-700">
+      <p class="text-2xl text-gray-700 mb-4">
         <a
           href="https://github.com/{data.candidate.githubHandle}"
           target="_blank"
@@ -29,87 +27,80 @@
         </a>
       </p>
     </div>
+    <dl class="space-y-4">
+      <div>
+        <dt class="font-bold">Email:</dt>
+        <dd>{data.candidate.email}</dd>
+      </div>
+      {#if data.candidate.discourseHandle}
+        <div>
+          <dt class="font-bold">Discourse:</dt>
+          <dd>
+            <a
+              href="https://discourse.nixos.org/u/{data.candidate
+                .discourseHandle}/summary"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline hover:no-underline"
+            >
+              {data.candidate.discourseHandle}
+            </a>
+          </dd>
+        </div>
+      {/if}
+      {#if data.candidate.matrixHandle}
+        <div>
+          <dt class="font-bold">Matrix:</dt>
+          <dd>
+            <a
+              href="https://matrix.to/#/{data.candidate.matrixHandle}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline hover:no-underline"
+            >
+              {data.candidate.matrixHandle}
+            </a>
+          </dd>
+        </div>
+      {/if}
+      {#if data.candidate.nominatedBy}
+        <div>
+          <dt class="font-bold">Nominated by:</dt>
+          <dd>
+            <a
+              href="https://github.com/{data.candidate.nominatedBy}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline hover:no-underline"
+            >
+              @{data.candidate.nominatedBy}
+            </a>
+          </dd>
+        </div>
+      {/if}
+      {#if data.candidate.endorsers && data.candidate.endorsers.length > 0}
+        <div>
+          <dt class="font-bold">
+            Endorsed by ({data.candidate.endorsers.length}):
+          </dt>
+          <dd class="mt-2">
+            {#each data.candidate.endorsers as endorser, i}
+              <a
+                href="https://github.com/{endorser}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline hover:no-underline"
+              >
+                @{endorser}
+              </a>{i < data.candidate.endorsers.length - 1 ? ", " : ""}
+            {/each}
+          </dd>
+        </div>
+      {/if}
+    </dl>
   </header>
 
-  <main class="max-w-7xl mx-auto px-8 py-16">
-    <!-- Candidate Info -->
-    <section class="mb-16">
-      <h2 class="text-3xl font-bold mb-6 border-b-2 border-black pb-4">
-        Contact info
-      </h2>
-      <dl class="space-y-4">
-        <div>
-          <dt class="font-bold">Email:</dt>
-          <dd>{data.candidate.email}</dd>
-        </div>
-        {#if data.candidate.discourseHandle}
-          <div>
-            <dt class="font-bold">Discourse:</dt>
-            <dd>
-              <a
-                href="https://discourse.nixos.org/u/{data.candidate
-                  .discourseHandle}/summary"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="underline hover:no-underline"
-              >
-                {data.candidate.discourseHandle}
-              </a>
-            </dd>
-          </div>
-        {/if}
-        {#if data.candidate.matrixHandle}
-          <div>
-            <dt class="font-bold">Matrix:</dt>
-            <dd>
-              <a
-                href="https://matrix.to/#/{data.candidate.matrixHandle}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="underline hover:no-underline"
-              >
-                {data.candidate.matrixHandle}
-              </a>
-            </dd>
-          </div>
-        {/if}
-        {#if data.candidate.nominatedBy}
-          <div>
-            <dt class="font-bold">Nominated by:</dt>
-            <dd>
-              <a
-                href="https://github.com/{data.candidate.nominatedBy}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="underline hover:no-underline"
-              >
-                @{data.candidate.nominatedBy}
-              </a>
-            </dd>
-          </div>
-        {/if}
-        {#if data.candidate.endorsers && data.candidate.endorsers.length > 0}
-          <div>
-            <dt class="font-bold">
-              Endorsed by ({data.candidate.endorsers.length}):
-            </dt>
-            <dd class="mt-2">
-              {#each data.candidate.endorsers as endorser, i}
-                <a
-                  href="https://github.com/{endorser}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="underline hover:no-underline"
-                >
-                  @{endorser}
-                </a>{i < data.candidate.endorsers.length - 1 ? ", " : ""}
-              {/each}
-            </dd>
-          </div>
-        {/if}
-      </dl>
-    </section>
-
+  <main class="max-w-7xl mx-auto px-8 py-5">
     <!-- Motivation -->
     {#if data.candidate.motivation}
       <section class="mb-16">

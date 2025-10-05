@@ -12,8 +12,8 @@
 <div class="min-h-screen bg-white text-black font-sans">
   <header class="py-12 px-8">
     <div class="max-w-7xl mx-auto">
-      <a href="/" class="text-sm underline mb-4 block">← Back to home</a>
-      <h1 class="text-5xl font-bold tracking-tight mb-2">
+      <a href="/" class="mb-4 block">← Back to home</a>
+      <h1 class="text-5xl font-bold tracking-tight mb-4">
         {data.question.title}
       </h1>
       <p class="text-xl text-gray-700">
@@ -75,7 +75,7 @@
                 rel="noopener noreferrer"
                 class="underline hover:no-underline"
               >
-                View on GitHub
+                View response on GitHub
               </a>
             </p>
             {#if response.response}
