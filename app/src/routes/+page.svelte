@@ -78,7 +78,7 @@
                 <h3 class="text-2xl font-bold mb-1">
                   {candidate.name}
                 </h3>
-                <p class="text-lg text-gray-700 dark:text-gray-300">
+                <p class="text-lg text-blue-700 dark:text-blue-300">
                   <a
                     href="https://github.com/{candidate.githubHandle}"
                     target="_blank"

@@ -19,20 +19,25 @@ export async function fetchQuestions() {
     for (const issue of issues) {
       console.log(`Processing issue #${issue.number}: ${issue.title}`);
 
+      let body = issue.body || null;
+      if (body) {
+        body = body.replace(/^#+\s*Question\s*\n/i, "");
+      }
+
       await db
         .insert(questions)
         .values({
           issueNumber: issue.number,
           issueId: issue.id,
           title: issue.title,
-          body: issue.body || null,
+          body,
           askerHandle: issue.user?.login || null,
         })
         .onConflictDoUpdate({
           target: questions.issueNumber,
           set: {
             title: issue.title,
-            body: issue.body || null,
+            body,
             askerHandle: issue.user?.login || null,
           },
         });

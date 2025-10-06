@@ -7,7 +7,7 @@
 <div class="font-sans">
   <header class="max-w-7xl mx-auto py-12 px-8">
     <a href="/" class="mb-12 block">← Back to home</a>
-    <p class="text-xl text-gray-700 dark:text-gray-300 space-x-4">
+    <p class="text-gray-700 dark:text-gray-300 space-x-4">
       <a
         href="https://github.com/NixOS/SC-election-2025/issues/{data.question
           .issueNumber}"
@@ -59,39 +59,41 @@
       <div class="space-y-12">
         {#each data.responses as response}
           <article class="pb-8">
-            <p class="text-gray-700 dark:text-gray-300 mb-1 space-x-4">
-              <a
-                href="https://github.com/{response.candidate.githubHandle}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="underline hover:no-underline"
-                tabindex="-1"
-              >
-                @{response.candidate.githubHandle}
-              </a>
-              <a
-                href="https://github.com/NixOS/SC-election-2025/issues/{data
-                  .question.issueNumber}#issuecomment-{response.commentId}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="underline hover:no-underline"
-                tabindex="-1"
-              >
-                Response
-              </a>
-            </p>
-            <h3
-              class="text-2xl font-bold mb-2 sticky top-0 bg-white dark:bg-black py-2"
-            >
-              <a
-                href="/candidates/{response.candidate.githubHandle}"
-                class="hover:underline"
-              >
-                {response.candidate.name}
-              </a>
-            </h3>
+            <div>
+              <p class="text-gray-700 dark:text-gray-300 space-x-4">
+                <a
+                  href="https://github.com/NixOS/SC-election-2025/issues/{data
+                    .question.issueNumber}#issuecomment-{response.commentId}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="underline hover:no-underline"
+                  tabindex="-1"
+                >
+                  Response
+                </a>
+              </p>
+              <h3 class="text-2xl font-bold mt-3">
+                <a
+                  href="/candidates/{response.candidate.githubHandle}"
+                  class="hover:underline"
+                >
+                  {response.candidate.name}
+                </a>
+              </h3>
+              <p class="text-blue-700 dark:text-blue-300 mt-1">
+                <a
+                  href="https://github.com/{response.candidate.githubHandle}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="underline hover:no-underline"
+                  tabindex="-1"
+                >
+                  @{response.candidate.githubHandle}
+                </a>
+              </p>
+            </div>
             {#if response.response}
-              <div class="prose max-w-none">
+              <div class="prose max-w-none mt-4">
                 {@html renderMarkdown(response.response, {
                   footnotePrefix: response.candidate.githubHandle,
                 })}

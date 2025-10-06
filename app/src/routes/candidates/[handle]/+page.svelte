@@ -32,18 +32,16 @@
   <header class="max-w-7xl mx-auto py-12 px-8">
     <a href="/" class="mb-12 block">← Back to home</a>
     <p class="text-gray-700 dark:text-gray-300 space-x-4 mb-2">
-      {#if data.candidate.nominationPrNumber}
-        <a
-          href="https://github.com/NixOS/SC-election-2025/pull/{data.candidate
-            .nominationPrNumber}"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline hover:no-underline"
-          tabindex="-1"
-        >
-          PR #{data.candidate.nominationPrNumber}
-        </a>
-      {/if}
+      <a
+        href="https://github.com/NixOS/SC-election-2025/pull/{data.candidate
+          .nominationPrNumber}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline hover:no-underline"
+        tabindex="-1"
+      >
+        PR #{data.candidate.nominationPrNumber}
+      </a>
       <a
         href="https://github.com/NixOS/SC-election-2025/blob/main/candidates/{data
           .candidate.githubHandle}.md"
@@ -55,10 +53,10 @@
         Statement
       </a>
     </p>
-    <h1 class="text-5xl font-bold tracking-tight mb-2">
+    <h1 class="text-5xl font-bold tracking-tight">
       {data.candidate.name}
     </h1>
-    <p class="text-2xl text-gray-700 dark:text-gray-300 mb-4">
+    <p class="text-2xl text-blue-700 dark:text-blue-300 mt-2">
       <a
         href="https://github.com/{data.candidate.githubHandle}"
         target="_blank"
@@ -68,7 +66,7 @@
         @{data.candidate.githubHandle}
       </a>
     </p>
-    <dl class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <dl class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
       <div>
         <dt class="font-bold">Email:</dt>
         <dd>{data.candidate.email}</dd>
