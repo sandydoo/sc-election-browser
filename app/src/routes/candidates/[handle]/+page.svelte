@@ -93,8 +93,8 @@
 <svelte:window onkeydown={handleGlobalKeyDown} />
 
 <div class="font-sans">
-  <header class="max-w-7xl mx-auto py-12 px-8">
-    <div class="mb-12 flex items-center justify-between">
+  <header class="max-w-7xl mx-auto py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-8">
+    <div class="mb-6 md:mb-10 lg:mb-12 flex items-center justify-between">
       <a
         href="/"
         class="px-3 py-1.5 border border-gray-400 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -167,13 +167,13 @@
       </a>
     </p>
     <h1
-      class="text-5xl font-bold tracking-tight group cursor-pointer flex items-center gap-3"
+      class="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight group cursor-pointer flex items-center gap-3"
       onclick={() => setHash("")}
     >
       <span>{data.candidate.name}</span>
       <HashLink hash="" />
     </h1>
-    <p class="text-2xl text-blue-700 dark:text-blue-300 mt-2">
+    <p class="text-lg md:text-xl lg:text-2xl text-blue-700 dark:text-blue-300 mt-1 md:mt-2">
       <a
         href="https://github.com/{data.candidate.githubHandle}"
         target="_blank"
@@ -183,14 +183,14 @@
         @{data.candidate.githubHandle}
       </a>
     </p>
-    <dl class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+    <dl class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 md:mt-8">
       <div>
-        <dt class="font-bold">Email:</dt>
+        <dt class="font-bold">Email</dt>
         <dd>{data.candidate.email}</dd>
       </div>
       {#if data.candidate.discourseHandle}
         <div>
-          <dt class="font-bold">Discourse:</dt>
+          <dt class="font-bold">Discourse</dt>
           <dd>
             <a
               href="https://discourse.nixos.org/u/{data.candidate
@@ -206,7 +206,7 @@
       {/if}
       {#if data.candidate.matrixHandle}
         <div>
-          <dt class="font-bold">Matrix:</dt>
+          <dt class="font-bold">Matrix</dt>
           <dd>
             <a
               href="https://matrix.to/#/{data.candidate.matrixHandle}"
@@ -221,7 +221,7 @@
       {/if}
       {#if data.candidate.nominatedBy}
         <div>
-          <dt class="font-bold">Nominated by:</dt>
+          <dt class="font-bold">Nominated by</dt>
           <dd>
             <a
               href="https://github.com/{data.candidate.nominatedBy}"
@@ -237,7 +237,7 @@
       {#if data.candidate.endorsers && data.candidate.endorsers.length > 0}
         <div>
           <dt class="font-bold">
-            Endorsed by ({data.candidate.endorsers.length}):
+            Endorsed by ({data.candidate.endorsers.length})
           </dt>
           <dd class="mt-2">
             {#each data.candidate.endorsers as endorser, i}
@@ -256,12 +256,12 @@
     </dl>
   </header>
 
-  <main class="max-w-7xl mx-auto px-8 py-5">
+  <main class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-4 md:py-5">
     <!-- Motivation -->
     {#if data.candidate.motivation}
-      <section id="motivation" class="mb-16">
+      <section id="motivation" class="mb-10 md:mb-14 lg:mb-16">
         <h2
-          class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group"
+          class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-5 lg:mb-6 border-b-2 border-black dark:border-white pb-3 md:pb-4 group"
         >
           <button
             onclick={() => toggleSection("motivation")}
@@ -300,9 +300,9 @@
 
     <!-- Conflict of Interest -->
     {#if data.candidate.conflictOfInterest}
-      <section id="conflict-of-interest" class="mb-16">
+      <section id="conflict-of-interest" class="mb-10 md:mb-14 lg:mb-16">
         <h2
-          class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group"
+          class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-5 lg:mb-6 border-b-2 border-black dark:border-white pb-3 md:pb-4 group"
         >
           <button
             onclick={() => toggleSection("conflictOfInterest")}
@@ -344,7 +344,7 @@
     <!-- Responses -->
     <section id="responses">
       <h2
-        class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group"
+        class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-5 lg:mb-6 border-b-2 border-black dark:border-white pb-3 md:pb-4 group"
       >
         <button
           onclick={() => toggleSection("responses")}
@@ -374,7 +374,7 @@
         </button>
       </h2>
       {#if !collapsed.responses}
-        <div class="space-y-12">
+        <div class="space-y-8 md:space-y-10 lg:space-y-12">
           {#each data.responses as response}
             <article>
               <p class="text-gray-700 dark:text-gray-300 space-x-4 mb-2">
@@ -399,7 +399,7 @@
                   Response
                 </a>
               </p>
-              <h3 class="text-2xl font-bold mb-4">
+              <h3 class="text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4">
                 <a
                   href="/questions/{response.question.id}"
                   class="hover:underline"

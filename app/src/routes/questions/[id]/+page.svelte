@@ -47,8 +47,8 @@
 <svelte:window onkeydown={handleGlobalKeyDown} />
 
 <div class="font-sans">
-  <header class="max-w-7xl mx-auto py-12 px-8">
-    <div class="mb-12 flex items-center justify-between">
+  <header class="max-w-7xl mx-auto py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-8">
+    <div class="mb-6 md:mb-10 lg:mb-12 flex items-center justify-between">
       <a href="/" class="px-3 py-1.5 border border-gray-400 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"><span class="font-mono mr-2">←</span>Back to home</a>
       <div class="hidden md:flex items-center gap-1 text-sm">
         <button
@@ -112,18 +112,18 @@
         </a>
       {/if}
     </p>
-    <h1 class="text-5xl font-bold tracking-tight mt-4 group cursor-pointer flex items-center gap-3" onclick={() => setHash("")}>
+    <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mt-3 md:mt-4 group cursor-pointer flex items-center gap-3" onclick={() => setHash("")}>
       <span>{data.question.title}</span>
       <HashLink hash="" />
     </h1>
   </header>
 
-  <main class="max-w-7xl mx-auto px-8 py-16">
+  <main class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
     <!-- Question Body -->
     {#if data.question.body}
-      <section id="question" class="mb-16">
+      <section id="question" class="mb-10 md:mb-14 lg:mb-16">
         <h2
-          class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group"
+          class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-5 lg:mb-6 border-b-2 border-black dark:border-white pb-3 md:pb-4 group"
         >
           <span class="flex items-center gap-2">
             <span>Question</span>
@@ -139,16 +139,16 @@
     <!-- Responses -->
     <section id="responses">
       <h2
-        class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group"
+        class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-5 lg:mb-6 border-b-2 border-black dark:border-white pb-3 md:pb-4 group"
       >
         <span class="flex items-center gap-2">
           <span>Candidate Responses ({data.responses.length})</span>
           <HashLink hash="responses" />
         </span>
       </h2>
-      <div class="space-y-12">
+      <div class="space-y-8 md:space-y-10 lg:space-y-12">
         {#each data.responses as response}
-          <article id={response.candidate.githubHandle} class="pb-8">
+          <article id={response.candidate.githubHandle} class="pb-6 md:pb-8">
             <div>
               <p class="text-gray-700 dark:text-gray-300 space-x-4">
                 <a
@@ -162,7 +162,7 @@
                   Response
                 </a>
               </p>
-              <h3 class="text-2xl font-bold mt-3 group flex items-center gap-3">
+              <h3 class="text-lg md:text-xl lg:text-2xl font-bold mt-2 md:mt-3 group flex items-center gap-3">
                 <a
                   href="/candidates/{response.candidate.githubHandle}"
                   class="hover:underline"
@@ -184,7 +184,7 @@
               </p>
             </div>
             {#if response.response}
-              <div class="prose max-w-none mt-4">
+              <div class="prose max-w-none mt-3 md:mt-4">
                 {@html renderMarkdown(response.response, {
                   footnotePrefix: response.candidate.githubHandle,
                 })}

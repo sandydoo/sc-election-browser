@@ -163,78 +163,48 @@
 }
 
 .prose {
-  @apply text-lg leading-8 max-w-5xl;
+  @apply text-base md:text-lg leading-relaxed max-w-5xl;
 }
 
 .prose p {
-  margin-bottom: 1.25em;
+  @apply mb-5;
 }
 
 .prose blockquote {
-  border-left: 4px solid #000;
-  padding-left: 1em;
-  margin: 1.5em 0;
-  font-style: italic;
-  color: #4a5568;
-}
-
-.dark .prose blockquote {
-  border-left-color: #fff;
-  color: #cbd5e0;
+  @apply border-l-4 border-black dark:border-white pl-4 my-6 italic text-gray-600 dark:text-gray-400;
 }
 
 .prose ul,
 .prose ol {
-  margin: 1em 0;
-  padding-left: 2em;
+  @apply my-4 pl-8;
 }
 
 .prose ul {
-  list-style-type: disc;
+  @apply list-disc;
 }
 
 .prose ol {
-  list-style-type: decimal;
+  @apply list-decimal;
 }
 
 .prose li {
-  margin: 0.5em 0;
+  @apply my-2;
 }
 
 .prose a {
-  text-decoration: underline;
-}
-
-.prose a:hover {
-  text-decoration: none;
+  @apply underline hover:no-underline;
 }
 
 .prose code {
-  background-color: #f7fafc;
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-size: 0.9em;
-}
-
-.dark .prose code {
-  background-color: #1a202c;
+  @apply bg-gray-100 dark:bg-gray-900 px-1.5 py-0.5 rounded text-sm;
 }
 
 .prose pre {
-  background-color: #f7fafc;
-  padding: 1em;
-  border-radius: 5px;
-  overflow-x: auto;
-  margin: 1em 0;
-}
-
-.dark .prose pre {
-  background-color: #1a202c;
+  @apply bg-gray-100 dark:bg-gray-900 p-4 rounded overflow-x-auto my-4;
 }
 
 .prose pre code {
-  background-color: transparent;
-  padding: 0;
+  @apply bg-transparent p-0;
 }
 
 .prose h1,
@@ -243,22 +213,23 @@
 .prose h4,
 .prose h5,
 .prose h6 {
-  font-weight: bold;
-  margin-top: 1.5em;
-  margin-bottom: 0.75em;
+  @apply font-bold mt-6 mb-3;
 }
 
 .prose h1 {
-  font-size: 1.5em;
+  @apply text-xl md:text-2xl;
 }
+
 .prose h2 {
-  font-size: 1.25em;
+  @apply text-lg md:text-xl;
 }
+
 .prose h3 {
-  font-size: 1.1em;
+  @apply text-base md:text-lg;
 }
+
 .prose h4 {
-  font-size: 1em;
+  @apply text-base md:text-lg;
 }
 
 .prose hr {

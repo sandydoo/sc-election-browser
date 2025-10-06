@@ -24,18 +24,18 @@
 <svelte:window onkeydown={handleKeydown} />
 
 <div class="font-sans">
-  <header class="max-w-7xl mx-auto py-24 px-8">
-    <h1 class="text-6xl font-bold tracking-tight mb-6">
+  <header class="max-w-7xl mx-auto py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-8">
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-5 lg:mb-6">
       NixOS Steering Committee Election 2025
     </h1>
-    <p class="text-xl max-w-3xl leading-relaxed">
+    <p class="text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed">
       Browse candidates, questions, and responses for the NixOS Steering
       Committee election. This platform provides transparent access to all
       nomination materials and candidate statements.
     </p>
   </header>
 
-  <main class="max-w-7xl mx-auto px-8 py-16">
+  <main class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
     <nav class="mb-8 flex gap-4 text-sm" aria-label="Quick navigation">
       <a
         href="#candidates-section"
@@ -59,11 +59,11 @@
         <h2
           id="candidates-section"
           tabindex="-1"
-          class="text-4xl font-bold mb-8 outline-none"
+          class="text-xl md:text-2xl lg:text-3xl font-bold border-b-2 py-3 md:py-4 mb-6 md:mb-8 outline-none"
         >
           Candidates ({data.candidates.length})
         </h2>
-        <ul class="space-y-6">
+        <ul class="space-y-4 md:space-y-6">
           {#each data.candidates as candidate}
             <li class="py-2">
               <div
@@ -75,10 +75,10 @@
                   e.key === "Enter" &&
                   goto(`/candidates/${candidate.githubHandle}`)}
               >
-                <h3 class="text-2xl font-bold mb-1">
+                <h3 class="text-lg md:text-xl lg:text-2xl font-bold mb-1">
                   {candidate.name}
                 </h3>
-                <p class="text-lg text-blue-700 dark:text-blue-300">
+                <p class="text-base md:text-lg text-blue-700 dark:text-blue-300">
                   <a
                     href="https://github.com/{candidate.githubHandle}"
                     target="_blank"
@@ -101,11 +101,11 @@
         <h2
           id="questions-section"
           tabindex="-1"
-          class="text-4xl font-bold mb-8 outline-none"
+          class="text-xl md:text-2xl lg:text-3xl font-bold border-b-2 py-3 md:py-4 mb-6 md:mb-8 outline-none"
         >
           Questions ({data.questions.length})
         </h2>
-        <ul class="space-y-6">
+        <ul class="space-y-4 md:space-y-6">
           {#each data.questions as question}
             <li class="py-2">
               <div
@@ -130,7 +130,7 @@
                     Issue #{question.issueNumber}
                   </a>
                 </p>
-                <h3 class="text-xl font-bold">
+                <h3 class="text-base md:text-lg lg:text-xl font-bold">
                   {question.title}
                 </h3>
               </div>
