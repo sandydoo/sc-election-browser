@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+
   let { data } = $props();
 
   function handleKeydown(event: KeyboardEvent) {
@@ -47,13 +49,11 @@
             <li class="py-2">
               <div
                 class="block border-1 border-transparent hover:border-black dark:hover:border-white p-4 -m-4 transition-colors cursor-pointer"
-                onclick={() =>
-                  (window.location.href = `/candidates/${candidate.githubHandle}`)}
+                onclick={() => goto(`/candidates/${candidate.githubHandle}`)}
                 role="link"
                 tabindex="0"
                 onkeydown={(e) =>
-                  e.key === "Enter" &&
-                  (window.location.href = `/candidates/${candidate.githubHandle}`)}
+                  e.key === "Enter" && goto(`/candidates/${candidate.githubHandle}`)}
               >
                 <h3 class="text-2xl font-bold mb-1">
                   {candidate.name}
@@ -86,13 +86,11 @@
             <li class="py-2">
               <div
                 class="block border-1 border-transparent hover:border-black dark:hover:border-white p-4 -m-4 transition-colors cursor-pointer"
-                onclick={() =>
-                  (window.location.href = `/questions/${question.id}`)}
+                onclick={() => goto(`/questions/${question.id}`)}
                 role="link"
                 tabindex="0"
                 onkeydown={(e) =>
-                  e.key === "Enter" &&
-                  (window.location.href = `/questions/${question.id}`)}
+                  e.key === "Enter" && goto(`/questions/${question.id}`)}
               >
                 <p class="text-sm text-gray-700 dark:text-gray-300 mb-2">
                   <a
