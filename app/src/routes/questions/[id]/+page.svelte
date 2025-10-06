@@ -2,28 +2,25 @@
   import { renderMarkdown } from "$lib/markdown";
 
   let { data } = $props();
-
 </script>
 
 <div class="min-h-screen bg-white text-black font-sans">
-  <header class="py-12 px-8">
-    <div class="max-w-7xl mx-auto">
-      <a href="/" class="mb-4 block">← Back to home</a>
-      <h1 class="text-5xl font-bold tracking-tight mb-4">
-        {data.question.title}
-      </h1>
-      <p class="text-xl text-gray-700">
-        <a
-          href="https://github.com/NixOS/SC-election-2025/issues/{data.question
-            .issueNumber}"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline hover:no-underline"
-        >
-          Issue #{data.question.issueNumber}
-        </a>
-      </p>
-    </div>
+  <header class="max-w-7xl mx-auto py-12 px-8">
+    <a href="/" class="mb-4 block">← Back to home</a>
+    <h1 class="text-5xl font-bold tracking-tight mb-4">
+      {data.question.title}
+    </h1>
+    <p class="text-xl text-gray-700">
+      <a
+        href="https://github.com/NixOS/SC-election-2025/issues/{data.question
+          .issueNumber}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline hover:no-underline"
+      >
+        Issue #{data.question.issueNumber}
+      </a>
+    </p>
   </header>
 
   <main class="max-w-7xl mx-auto px-8 py-16">

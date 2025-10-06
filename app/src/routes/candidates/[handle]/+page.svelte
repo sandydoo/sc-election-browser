@@ -5,23 +5,21 @@
 </script>
 
 <div class="min-h-screen bg-white text-black font-sans">
-  <header class="py-12 px-8">
-    <div class="max-w-7xl mx-auto">
-      <a href="/" class="mb-4 block">← Back to home</a>
-      <h1 class="text-5xl font-bold tracking-tight mb-2">
-        {data.candidate.name}
-      </h1>
-      <p class="text-2xl text-gray-700 mb-4">
-        <a
-          href="https://github.com/{data.candidate.githubHandle}"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline hover:no-underline"
-        >
-          @{data.candidate.githubHandle}
-        </a>
-      </p>
-    </div>
+  <header class="max-w-7xl mx-auto py-12 px-8">
+    <a href="/" class="mb-4 block">← Back to home</a>
+    <h1 class="text-5xl font-bold tracking-tight mb-2">
+      {data.candidate.name}
+    </h1>
+    <p class="text-2xl text-gray-700 mb-4">
+      <a
+        href="https://github.com/{data.candidate.githubHandle}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline hover:no-underline"
+      >
+        @{data.candidate.githubHandle}
+      </a>
+    </p>
     <dl class="space-y-4">
       <div>
         <dt class="font-bold">Email:</dt>

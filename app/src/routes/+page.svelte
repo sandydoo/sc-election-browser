@@ -3,23 +3,21 @@
 </script>
 
 <div class="min-h-screen bg-white text-black font-sans">
-  <header class="py-24 px-8">
-    <div class="max-w-7xl mx-auto">
-      <h1 class="text-6xl font-bold tracking-tight mb-6">
-        NixOS Steering Committee Election 2025
-      </h1>
-      <p class="text-xl max-w-3xl leading-relaxed">
-        Browse candidates, questions, and responses for the NixOS Steering
-        Committee election. This platform provides transparent access to all
-        nomination materials and candidate statements.
-      </p>
-    </div>
+  <header class="max-w-7xl mx-auto py-24 px-8">
+    <h1 class="text-6xl font-bold tracking-tight mb-6">
+      NixOS Steering Committee Election 2025
+    </h1>
+    <p class="text-xl max-w-3xl leading-relaxed">
+      Browse candidates, questions, and responses for the NixOS Steering
+      Committee election. This platform provides transparent access to all
+      nomination materials and candidate statements.
+    </p>
   </header>
 
-  <main class="max-w-7xl mx-auto py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-2">
+  <main class="max-w-7xl mx-auto px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12">
       <!-- Candidates Section -->
-      <div class="p-8">
+      <div>
         <h2 class="text-4xl font-bold mb-8">
           Candidates ({data.candidates.length})
         </h2>
@@ -57,7 +55,7 @@
       </div>
 
       <!-- Questions Section -->
-      <div class="p-8">
+      <div>
         <h2 class="text-4xl font-bold mb-8">
           Questions ({data.questions.length})
         </h2>

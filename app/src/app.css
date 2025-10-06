@@ -145,8 +145,7 @@
 }
 
 .prose {
-  line-height: 1.75;
-  max-width: 72ch;
+  @apply text-lg leading-8 max-w-5xl;
 }
 
 .prose p {
