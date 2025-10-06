@@ -8,8 +8,6 @@
 
   let collapsed = $state<Record<string, boolean>>({
     motivation: false,
-    whatIWillDo: false,
-    whatIHaveDone: false,
     conflictOfInterest: false,
     responses: false,
   });
@@ -24,8 +22,6 @@
     if (hash) {
       const sectionMap: Record<string, string> = {
         motivation: "motivation",
-        "what-i-will-do": "whatIWillDo",
-        "what-i-have-done": "whatIHaveDone",
         "conflict-of-interest": "conflictOfInterest",
         responses: "responses",
       };
@@ -99,7 +95,11 @@
 <div class="font-sans">
   <header class="max-w-7xl mx-auto py-12 px-8">
     <div class="mb-12 flex items-center justify-between">
-      <a href="/" class="px-3 py-1.5 border border-gray-400 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"><span class="font-mono mr-2">←</span>Back to home</a>
+      <a
+        href="/"
+        class="px-3 py-1.5 border border-gray-400 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        ><span class="font-mono mr-2">←</span>Back to home</a
+      >
       <div class="hidden md:flex items-center gap-1 text-sm">
         <button
           class="px-3 py-1.5 border border-gray-400 dark:border-gray-600 rounded font-mono hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
@@ -112,7 +112,9 @@
             );
             if (currentIndex > 0) {
               const prevCandidate = data.allCandidates[currentIndex - 1];
-              goto(`/candidates/${prevCandidate.githubHandle}${window.location.hash}`);
+              goto(
+                `/candidates/${prevCandidate.githubHandle}${window.location.hash}`,
+              );
             }
           }}
           aria-label="Previous candidate"
@@ -131,7 +133,9 @@
             );
             if (currentIndex < data.allCandidates.length - 1) {
               const nextCandidate = data.allCandidates[currentIndex + 1];
-              goto(`/candidates/${nextCandidate.githubHandle}${window.location.hash}`);
+              goto(
+                `/candidates/${nextCandidate.githubHandle}${window.location.hash}`,
+              );
             }
           }}
           aria-label="Next candidate"
@@ -162,7 +166,10 @@
         Statement
       </a>
     </p>
-    <h1 class="text-5xl font-bold tracking-tight group cursor-pointer flex items-center gap-3" onclick={() => setHash("")}>
+    <h1
+      class="text-5xl font-bold tracking-tight group cursor-pointer flex items-center gap-3"
+      onclick={() => setHash("")}
+    >
       <span>{data.candidate.name}</span>
       <HashLink hash="" />
     </h1>
@@ -253,7 +260,9 @@
     <!-- Motivation -->
     {#if data.candidate.motivation}
       <section id="motivation" class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group">
+        <h2
+          class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group"
+        >
           <button
             onclick={() => toggleSection("motivation")}
             onkeydown={(e) => handleKeyDown(e, "motivation")}
@@ -289,88 +298,12 @@
       </section>
     {/if}
 
-    <!-- What I Will Do -->
-    {#if data.candidate.whatIWillDo}
-      <section id="what-i-will-do" class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group">
-          <button
-            onclick={() => toggleSection("whatIWillDo")}
-            onkeydown={(e) => handleKeyDown(e, "whatIWillDo")}
-            class="w-full flex justify-between items-center cursor-pointer text-left"
-          >
-            <span class="flex items-center gap-2">
-              <span>What I will do</span>
-              <HashLink hash="what-i-will-do" />
-            </span>
-            <span
-              class="p-1 transition-transform duration-200"
-              style="transform: rotate({collapsed.whatIWillDo ? -90 : 0}deg)"
-              aria-label={collapsed.whatIWillDo ? "Expand" : "Collapse"}
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </span>
-          </button>
-        </h2>
-        {#if !collapsed.whatIWillDo}
-          <div class="prose max-w-none">
-            {@html renderMarkdown(data.candidate.whatIWillDo)}
-          </div>
-        {/if}
-      </section>
-    {/if}
-
-    <!-- What I Have Done -->
-    {#if data.candidate.whatIHaveDone}
-      <section id="what-i-have-done" class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group">
-          <button
-            onclick={() => toggleSection("whatIHaveDone")}
-            onkeydown={(e) => handleKeyDown(e, "whatIHaveDone")}
-            class="w-full flex justify-between items-center cursor-pointer text-left"
-          >
-            <span class="flex items-center gap-2">
-              <span>What I have done</span>
-              <HashLink hash="what-i-have-done" />
-            </span>
-            <span
-              class="p-1 transition-transform duration-200"
-              style="transform: rotate({collapsed.whatIHaveDone ? -90 : 0}deg)"
-              aria-label={collapsed.whatIHaveDone ? "Expand" : "Collapse"}
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </span>
-          </button>
-        </h2>
-        {#if !collapsed.whatIHaveDone}
-          <div class="prose max-w-none">
-            {@html renderMarkdown(data.candidate.whatIHaveDone)}
-          </div>
-        {/if}
-      </section>
-    {/if}
-
     <!-- Conflict of Interest -->
     {#if data.candidate.conflictOfInterest}
       <section id="conflict-of-interest" class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group">
+        <h2
+          class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group"
+        >
           <button
             onclick={() => toggleSection("conflictOfInterest")}
             onkeydown={(e) => handleKeyDown(e, "conflictOfInterest")}
@@ -410,7 +343,9 @@
 
     <!-- Responses -->
     <section id="responses">
-      <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group">
+      <h2
+        class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group"
+      >
         <button
           onclick={() => toggleSection("responses")}
           onkeydown={(e) => handleKeyDown(e, "responses")}

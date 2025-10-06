@@ -9,7 +9,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "start": "tsx src/cli.ts"
+    "start": "tsx src/cli.ts",
+    "test": "vitest"
   },
   "dependencies": {
     "@libsql/client": "^0.15.15",
@@ -23,6 +24,7 @@
     "@types/node": "^22",
     "tsup": "^8.3.5",
     "typescript": "^5.9.2",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "vitest": "^2.1.8"
   }
 }

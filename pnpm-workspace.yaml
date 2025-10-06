@@ -2,7 +2,10 @@ packages:
   - app
   - packages/*
 
+onlyBuiltDependencies:
+  - esbuild
+
 onlyBuiltonlyBuiltDependencies:
-  - "@tailwindcss/oxide"
+  - '@tailwindcss/oxide'
 
 updateNotifier: false
