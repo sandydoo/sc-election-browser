@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { Command } from "commander";
 import { fetchCandidates } from "./fetchers/candidates.js";
 import { fetchQuestions } from "./fetchers/questions.js";
