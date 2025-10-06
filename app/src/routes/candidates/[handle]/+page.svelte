@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
   import HashLink from "$lib/components/HashLink.svelte";
+  import CollapsibleHeader from "$lib/components/CollapsibleHeader.svelte";
 
   let { data } = $props();
 
@@ -42,13 +43,6 @@
       "candidateSectionsCollapsed",
       JSON.stringify(collapsed),
     );
-  }
-
-  function handleKeyDown(event: KeyboardEvent, section: string) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      toggleSection(section);
-    }
   }
 
   function handleGlobalKeyDown(event: KeyboardEvent) {
@@ -167,8 +161,7 @@
       </a>
     </p>
     <h1
-      class="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight group cursor-pointer flex items-center gap-3"
-      onclick={() => setHash("")}
+      class="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight group flex items-center gap-3"
     >
       <span>{data.candidate.name}</span>
       <HashLink hash="" />
@@ -260,36 +253,12 @@
     <!-- Motivation -->
     {#if data.candidate.motivation}
       <section id="motivation" class="mb-10 md:mb-14 lg:mb-16">
-        <h2
-          class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-5 lg:mb-6 border-b-2 border-black dark:border-white pb-3 md:pb-4 group"
-        >
-          <button
-            onclick={() => toggleSection("motivation")}
-            onkeydown={(e) => handleKeyDown(e, "motivation")}
-            class="w-full flex justify-between items-center cursor-pointer text-left"
-          >
-            <span class="flex items-center gap-2">
-              <span>Motivation</span>
-              <HashLink hash="motivation" />
-            </span>
-            <span
-              class="p-1 transition-transform duration-200"
-              style="transform: rotate({collapsed.motivation ? -90 : 0}deg)"
-              aria-label={collapsed.motivation ? "Expand" : "Collapse"}
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </span>
-          </button>
-        </h2>
+        <CollapsibleHeader
+          title="Motivation"
+          hash="motivation"
+          collapsed={collapsed.motivation}
+          ontoggle={() => toggleSection("motivation")}
+        />
         {#if !collapsed.motivation}
           <div class="prose max-w-none">
             {@html renderMarkdown(data.candidate.motivation)}
@@ -301,38 +270,12 @@
     <!-- Conflict of Interest -->
     {#if data.candidate.conflictOfInterest}
       <section id="conflict-of-interest" class="mb-10 md:mb-14 lg:mb-16">
-        <h2
-          class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-5 lg:mb-6 border-b-2 border-black dark:border-white pb-3 md:pb-4 group"
-        >
-          <button
-            onclick={() => toggleSection("conflictOfInterest")}
-            onkeydown={(e) => handleKeyDown(e, "conflictOfInterest")}
-            class="w-full flex justify-between items-center cursor-pointer text-left"
-          >
-            <span class="flex items-center gap-2">
-              <span>Conflict of interest</span>
-              <HashLink hash="conflict-of-interest" />
-            </span>
-            <span
-              class="p-1 transition-transform duration-200"
-              style="transform: rotate({collapsed.conflictOfInterest
-                ? -90
-                : 0}deg)"
-              aria-label={collapsed.conflictOfInterest ? "Expand" : "Collapse"}
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </span>
-          </button>
-        </h2>
+        <CollapsibleHeader
+          title="Conflict of interest"
+          hash="conflict-of-interest"
+          collapsed={collapsed.conflictOfInterest}
+          ontoggle={() => toggleSection("conflictOfInterest")}
+        />
         {#if !collapsed.conflictOfInterest}
           <div class="prose max-w-none">
             {@html renderMarkdown(data.candidate.conflictOfInterest)}
@@ -343,36 +286,12 @@
 
     <!-- Responses -->
     <section id="responses">
-      <h2
-        class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-5 lg:mb-6 border-b-2 border-black dark:border-white pb-3 md:pb-4 group"
-      >
-        <button
-          onclick={() => toggleSection("responses")}
-          onkeydown={(e) => handleKeyDown(e, "responses")}
-          class="w-full flex justify-between items-center cursor-pointer text-left"
-        >
-          <span class="flex items-center gap-2">
-            <span>Question responses ({data.responses.length})</span>
-            <HashLink hash="responses" />
-          </span>
-          <span
-            class="p-1 transition-transform duration-200"
-            style="transform: rotate({collapsed.responses ? -90 : 0}deg)"
-            aria-label={collapsed.responses ? "Expand" : "Collapse"}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
-        </button>
-      </h2>
+      <CollapsibleHeader
+        title="Question responses ({data.responses.length})"
+        hash="responses"
+        collapsed={collapsed.responses}
+        ontoggle={() => toggleSection("responses")}
+      />
       {#if !collapsed.responses}
         <div class="space-y-8 md:space-y-10 lg:space-y-12">
           {#each data.responses as response}

@@ -112,7 +112,7 @@
         </a>
       {/if}
     </p>
-    <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mt-3 md:mt-4 group cursor-pointer flex items-center gap-3" onclick={() => setHash("")}>
+    <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mt-3 md:mt-4 group flex items-center gap-3">
       <span>{data.question.title}</span>
       <HashLink hash="" />
     </h1>
