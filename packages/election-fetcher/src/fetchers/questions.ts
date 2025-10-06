@@ -26,12 +26,14 @@ export async function fetchQuestions() {
           issueId: issue.id,
           title: issue.title,
           body: issue.body || null,
+          askerHandle: issue.user?.login || null,
         })
         .onConflictDoUpdate({
           target: questions.issueNumber,
           set: {
             title: issue.title,
             body: issue.body || null,
+            askerHandle: issue.user?.login || null,
           },
         });
 

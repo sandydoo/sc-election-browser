@@ -29,6 +29,7 @@ export const questions = sqliteTable("questions", {
   issueId: integer("issue_id").notNull(),
   title: text("title", { length: 500 }).notNull(),
   body: text("body"),
+  askerHandle: text("asker_handle", { length: 100 }),
   createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(
     () => new Date(),
   ),

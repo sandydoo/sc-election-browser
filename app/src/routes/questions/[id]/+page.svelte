@@ -7,7 +7,7 @@
 <div class="font-sans">
   <header class="max-w-7xl mx-auto py-12 px-8">
     <a href="/" class="mb-12 block">← Back to home</a>
-    <p class="text-xl text-gray-700 dark:text-gray-300 mb-4">
+    <p class="text-xl text-gray-700 dark:text-gray-300 space-x-4">
       <a
         href="https://github.com/NixOS/SC-election-2025/issues/{data.question
           .issueNumber}"
@@ -17,8 +17,19 @@
       >
         Issue #{data.question.issueNumber}
       </a>
+      {#if data.question.askerHandle}
+        Asked by
+        <a
+          href="https://github.com/{data.question.askerHandle}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline hover:no-underline"
+        >
+          @{data.question.askerHandle}
+        </a>
+      {/if}
     </p>
-    <h1 class="text-5xl font-bold tracking-tight">
+    <h1 class="text-5xl font-bold tracking-tight mt-4">
       {data.question.title}
     </h1>
   </header>
