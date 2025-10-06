@@ -35,44 +35,51 @@ export function parseCandidateMarkdown(
     i++;
   }
 
-  while (
-    i < lines.length &&
-    (lines[i].trim().startsWith("-") || lines[i].trim().startsWith("*"))
-  ) {
+  while (i < lines.length) {
     const line = lines[i].trim();
-    const match = line.match(/^[-*]\s*([^:]+):\s*(.+)$/);
 
-    if (match) {
-      const [, key, value] = match;
-      let cleanValue = value.trim();
+    // Stop when we hit a section heading
+    if (line.startsWith("###")) {
+      break;
+    }
 
-      // Extract text from markdown links [text](url) or just remove @ prefix
-      const linkMatch = cleanValue.match(/\[([^\]]+)\]/);
-      if (linkMatch) {
-        cleanValue = linkMatch[1].replace(/^@/, "");
-      } else {
-        cleanValue = cleanValue.replace(/^@/, "");
-      }
+    // Process lines that start with - or *
+    if (line.startsWith("-") || line.startsWith("*")) {
+      const match = line.match(/^[-*]\s*([^:]+):\s*(.+)$/);
 
-      // Remove backticks
-      cleanValue = cleanValue.replace(/`/g, "");
+      if (match) {
+        const [, key, value] = match;
+        let cleanValue = value.trim();
 
-      const keyLower = key.trim().toLowerCase();
+        // Extract text from markdown links [text](url) or just remove @ prefix
+        const linkMatch = cleanValue.match(/\[([^\]]+)\]/);
+        if (linkMatch) {
+          cleanValue = linkMatch[1].replace(/^@/, "");
+        } else {
+          cleanValue = cleanValue.replace(/^@/, "");
+        }
 
-      if (keyLower === "name") {
-        metadata.name = cleanValue;
-      } else if (keyLower.includes("github")) {
-        metadata.githubHandle = cleanValue;
-      } else if (keyLower.includes("email")) {
-        // Extract just the email address using regex
-        const emailMatch = cleanValue.match(/[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}/);
-        metadata.email = emailMatch ? emailMatch[0] : cleanValue;
-      } else if (keyLower.includes("discourse")) {
-        if (cleanValue) metadata.discourseHandle = cleanValue;
-      } else if (keyLower.includes("matrix")) {
-        if (cleanValue) metadata.matrixHandle = cleanValue;
+        // Remove backticks
+        cleanValue = cleanValue.replace(/`/g, "");
+
+        const keyLower = key.trim().toLowerCase();
+
+        if (keyLower === "name") {
+          metadata.name = cleanValue;
+        } else if (keyLower.includes("github")) {
+          metadata.githubHandle = cleanValue;
+        } else if (keyLower.includes("email")) {
+          // Extract just the email address using regex
+          const emailMatch = cleanValue.match(/[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}/);
+          metadata.email = emailMatch ? emailMatch[0] : cleanValue;
+        } else if (keyLower.includes("discourse")) {
+          if (cleanValue) metadata.discourseHandle = cleanValue;
+        } else if (keyLower.includes("matrix")) {
+          if (cleanValue) metadata.matrixHandle = cleanValue;
+        }
       }
     }
+
     i++;
   }
 
