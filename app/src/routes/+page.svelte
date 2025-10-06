@@ -2,7 +2,7 @@
   let { data } = $props();
 </script>
 
-<div class="min-h-screen bg-white text-black font-sans">
+<div class="font-sans">
   <header class="max-w-7xl mx-auto py-24 px-8">
     <h1 class="text-6xl font-bold tracking-tight mb-6">
       NixOS Steering Committee Election 2025
@@ -25,7 +25,7 @@
           {#each data.candidates as candidate}
             <li class="py-2">
               <div
-                class="block hover:bg-gray-50 p-4 -m-4 rounded-lg transition-colors cursor-pointer"
+                class="block hover:bg-gray-50 dark:hover:bg-gray-900 p-4 -m-4 rounded-lg transition-colors cursor-pointer"
                 onclick={() =>
                   (window.location.href = `/candidates/${candidate.githubHandle}`)}
                 role="link"
@@ -37,7 +37,7 @@
                 <h3 class="text-2xl font-bold mb-1">
                   {candidate.name}
                 </h3>
-                <p class="text-lg text-gray-700">
+                <p class="text-lg text-gray-700 dark:text-gray-300">
                   <a
                     href="https://github.com/{candidate.githubHandle}"
                     target="_blank"
@@ -63,7 +63,7 @@
           {#each data.questions as question}
             <li class="py-2">
               <div
-                class="block hover:bg-gray-50 p-4 -m-4 rounded-lg transition-colors cursor-pointer"
+                class="block hover:bg-gray-50 dark:hover:bg-gray-900 p-4 -m-4 rounded-lg transition-colors cursor-pointer"
                 onclick={() =>
                   (window.location.href = `/questions/${question.id}`)}
                 role="link"
@@ -75,7 +75,7 @@
                 <h3 class="text-xl font-bold mb-2">
                   {question.title}
                 </h3>
-                <p class="text-sm text-gray-700">
+                <p class="text-sm text-gray-700 dark:text-gray-300">
                   <a
                     href="https://github.com/NixOS/SC-election-2025/issues/{question.issueNumber}"
                     target="_blank"

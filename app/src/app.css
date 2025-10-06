@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light dark;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+.light {
+  color-scheme: light;
+}
+
 @font-face {
   font-family: "Route 159";
   src: url("/fonts/Route159-Regular.woff") format("woff");
@@ -160,6 +174,11 @@
   color: #4a5568;
 }
 
+.dark .prose blockquote {
+  border-left-color: #fff;
+  color: #cbd5e0;
+}
+
 .prose ul,
 .prose ol {
   margin: 1em 0;
@@ -193,12 +212,20 @@
   font-size: 0.9em;
 }
 
+.dark .prose code {
+  background-color: #1a202c;
+}
+
 .prose pre {
   background-color: #f7fafc;
   padding: 1em;
   border-radius: 5px;
   overflow-x: auto;
   margin: 1em 0;
+}
+
+.dark .prose pre {
+  background-color: #1a202c;
 }
 
 .prose pre code {

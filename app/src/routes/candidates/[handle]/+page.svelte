@@ -4,13 +4,13 @@
   let { data } = $props();
 </script>
 
-<div class="min-h-screen bg-white text-black font-sans">
+<div class="font-sans">
   <header class="max-w-7xl mx-auto py-12 px-8">
     <a href="/" class="mb-4 block">← Back to home</a>
     <h1 class="text-5xl font-bold tracking-tight mb-2">
       {data.candidate.name}
     </h1>
-    <p class="text-2xl text-gray-700 mb-4">
+    <p class="text-2xl text-gray-700 dark:text-gray-300 mb-4">
       <a
         href="https://github.com/{data.candidate.githubHandle}"
         target="_blank"
@@ -97,7 +97,7 @@
     <!-- Motivation -->
     {#if data.candidate.motivation}
       <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black pb-4">
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
           Motivation
         </h2>
         <div class="prose max-w-none">
@@ -109,7 +109,7 @@
     <!-- What I Will Do -->
     {#if data.candidate.whatIWillDo}
       <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black pb-4">
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
           What I will do
         </h2>
         <div class="prose max-w-none">
@@ -121,7 +121,7 @@
     <!-- What I Have Done -->
     {#if data.candidate.whatIHaveDone}
       <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black pb-4">
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
           What I have done
         </h2>
         <div class="prose max-w-none">
@@ -133,7 +133,7 @@
     <!-- Conflict of Interest -->
     {#if data.candidate.conflictOfInterest}
       <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black pb-4">
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
           Conflict of interest
         </h2>
         <div class="prose max-w-none">
@@ -144,7 +144,7 @@
 
     <!-- Responses -->
     <section>
-      <h2 class="text-3xl font-bold mb-6 border-b-2 border-black pb-4">
+      <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
         Question responses ({data.responses.length})
       </h2>
       <div class="space-y-12">
@@ -158,7 +158,7 @@
                 {response.question.title}
               </a>
             </h3>
-            <p class="text-sm text-gray-700 mb-4">
+            <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">
               <a
                 href="https://github.com/NixOS/SC-election-2025/issues/{response
                   .question.issueNumber}#issuecomment-{response.commentId}"
