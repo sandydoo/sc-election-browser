@@ -1,6 +1,8 @@
 <script lang="ts">
   import { renderMarkdown } from "$lib/markdown";
   import { onMount } from "svelte";
+  import { goto } from "$app/navigation";
+  import HashLink from "$lib/components/HashLink.svelte";
 
   let { data } = $props();
 
@@ -16,6 +18,25 @@
     const stored = localStorage.getItem("candidateSectionsCollapsed");
     if (stored) {
       collapsed = JSON.parse(stored);
+    }
+
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      const sectionMap: Record<string, string> = {
+        motivation: "motivation",
+        "what-i-will-do": "whatIWillDo",
+        "what-i-have-done": "whatIHaveDone",
+        "conflict-of-interest": "conflictOfInterest",
+        responses: "responses",
+      };
+      const section = sectionMap[hash];
+      if (section && collapsed[section]) {
+        collapsed[section] = false;
+        localStorage.setItem(
+          "candidateSectionsCollapsed",
+          JSON.stringify(collapsed),
+        );
+      }
     }
   });
 
@@ -33,11 +54,92 @@
       toggleSection(section);
     }
   }
+
+  function handleGlobalKeyDown(event: KeyboardEvent) {
+    if (
+      event.target instanceof HTMLInputElement ||
+      event.target instanceof HTMLTextAreaElement
+    ) {
+      return;
+    }
+
+    const currentIndex = data.allCandidates.findIndex(
+      (c) => c.githubHandle === data.candidate.githubHandle,
+    );
+
+    const hash = window.location.hash;
+
+    if (event.key === "ArrowLeft" && currentIndex > 0) {
+      const prevCandidate = data.allCandidates[currentIndex - 1];
+      goto(`/candidates/${prevCandidate.githubHandle}${hash}`);
+    } else if (
+      event.key === "ArrowRight" &&
+      currentIndex < data.allCandidates.length - 1
+    ) {
+      const nextCandidate = data.allCandidates[currentIndex + 1];
+      goto(`/candidates/${nextCandidate.githubHandle}${hash}`);
+    }
+  }
+
+  function setHash(hash: string) {
+    if (hash) {
+      window.location.hash = hash;
+    } else {
+      history.pushState(
+        "",
+        document.title,
+        window.location.pathname + window.location.search,
+      );
+    }
+  }
 </script>
+
+<svelte:window onkeydown={handleGlobalKeyDown} />
 
 <div class="font-sans">
   <header class="max-w-7xl mx-auto py-12 px-8">
-    <a href="/" class="mb-12 block">← Back to home</a>
+    <div class="mb-12 flex items-center justify-between">
+      <a href="/" class="px-3 py-1.5 border border-gray-400 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"><span class="font-mono mr-2">←</span>Back to home</a>
+      <div class="hidden md:flex items-center gap-1 text-sm">
+        <button
+          class="px-3 py-1.5 border border-gray-400 dark:border-gray-600 rounded font-mono hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          disabled={data.allCandidates.findIndex(
+            (c) => c.githubHandle === data.candidate.githubHandle,
+          ) === 0}
+          onclick={() => {
+            const currentIndex = data.allCandidates.findIndex(
+              (c) => c.githubHandle === data.candidate.githubHandle,
+            );
+            if (currentIndex > 0) {
+              const prevCandidate = data.allCandidates[currentIndex - 1];
+              goto(`/candidates/${prevCandidate.githubHandle}${window.location.hash}`);
+            }
+          }}
+          aria-label="Previous candidate"
+        >
+          ←
+        </button>
+        <button
+          class="px-3 py-1.5 border border-gray-400 dark:border-gray-600 rounded font-mono hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          disabled={data.allCandidates.findIndex(
+            (c) => c.githubHandle === data.candidate.githubHandle,
+          ) ===
+            data.allCandidates.length - 1}
+          onclick={() => {
+            const currentIndex = data.allCandidates.findIndex(
+              (c) => c.githubHandle === data.candidate.githubHandle,
+            );
+            if (currentIndex < data.allCandidates.length - 1) {
+              const nextCandidate = data.allCandidates[currentIndex + 1];
+              goto(`/candidates/${nextCandidate.githubHandle}${window.location.hash}`);
+            }
+          }}
+          aria-label="Next candidate"
+        >
+          →
+        </button>
+      </div>
+    </div>
     <p class="text-gray-700 dark:text-gray-300 space-x-4 mb-2">
       <a
         href="https://github.com/NixOS/SC-election-2025/pull/{data.candidate
@@ -60,8 +162,9 @@
         Statement
       </a>
     </p>
-    <h1 class="text-5xl font-bold tracking-tight">
-      {data.candidate.name}
+    <h1 class="text-5xl font-bold tracking-tight group cursor-pointer flex items-center gap-3" onclick={() => setHash("")}>
+      <span>{data.candidate.name}</span>
+      <HashLink hash="" />
     </h1>
     <p class="text-2xl text-blue-700 dark:text-blue-300 mt-2">
       <a
@@ -149,14 +252,17 @@
   <main class="max-w-7xl mx-auto px-8 py-5">
     <!-- Motivation -->
     {#if data.candidate.motivation}
-      <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
+      <section id="motivation" class="mb-16">
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group">
           <button
             onclick={() => toggleSection("motivation")}
             onkeydown={(e) => handleKeyDown(e, "motivation")}
             class="w-full flex justify-between items-center cursor-pointer text-left"
           >
-            <span>Motivation</span>
+            <span class="flex items-center gap-2">
+              <span>Motivation</span>
+              <HashLink hash="motivation" />
+            </span>
             <span
               class="p-1 transition-transform duration-200"
               style="transform: rotate({collapsed.motivation ? -90 : 0}deg)"
@@ -185,14 +291,17 @@
 
     <!-- What I Will Do -->
     {#if data.candidate.whatIWillDo}
-      <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
+      <section id="what-i-will-do" class="mb-16">
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group">
           <button
             onclick={() => toggleSection("whatIWillDo")}
             onkeydown={(e) => handleKeyDown(e, "whatIWillDo")}
             class="w-full flex justify-between items-center cursor-pointer text-left"
           >
-            <span>What I will do</span>
+            <span class="flex items-center gap-2">
+              <span>What I will do</span>
+              <HashLink hash="what-i-will-do" />
+            </span>
             <span
               class="p-1 transition-transform duration-200"
               style="transform: rotate({collapsed.whatIWillDo ? -90 : 0}deg)"
@@ -221,14 +330,17 @@
 
     <!-- What I Have Done -->
     {#if data.candidate.whatIHaveDone}
-      <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
+      <section id="what-i-have-done" class="mb-16">
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group">
           <button
             onclick={() => toggleSection("whatIHaveDone")}
             onkeydown={(e) => handleKeyDown(e, "whatIHaveDone")}
             class="w-full flex justify-between items-center cursor-pointer text-left"
           >
-            <span>What I have done</span>
+            <span class="flex items-center gap-2">
+              <span>What I have done</span>
+              <HashLink hash="what-i-have-done" />
+            </span>
             <span
               class="p-1 transition-transform duration-200"
               style="transform: rotate({collapsed.whatIHaveDone ? -90 : 0}deg)"
@@ -257,14 +369,17 @@
 
     <!-- Conflict of Interest -->
     {#if data.candidate.conflictOfInterest}
-      <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
+      <section id="conflict-of-interest" class="mb-16">
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group">
           <button
             onclick={() => toggleSection("conflictOfInterest")}
             onkeydown={(e) => handleKeyDown(e, "conflictOfInterest")}
             class="w-full flex justify-between items-center cursor-pointer text-left"
           >
-            <span>Conflict of interest</span>
+            <span class="flex items-center gap-2">
+              <span>Conflict of interest</span>
+              <HashLink hash="conflict-of-interest" />
+            </span>
             <span
               class="p-1 transition-transform duration-200"
               style="transform: rotate({collapsed.conflictOfInterest
@@ -294,14 +409,17 @@
     {/if}
 
     <!-- Responses -->
-    <section>
-      <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
+    <section id="responses">
+      <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 group">
         <button
           onclick={() => toggleSection("responses")}
           onkeydown={(e) => handleKeyDown(e, "responses")}
           class="w-full flex justify-between items-center cursor-pointer text-left"
         >
-          <span>Question responses ({data.responses.length})</span>
+          <span class="flex items-center gap-2">
+            <span>Question responses ({data.responses.length})</span>
+            <HashLink hash="responses" />
+          </span>
           <span
             class="p-1 transition-transform duration-200"
             style="transform: rotate({collapsed.responses ? -90 : 0}deg)"

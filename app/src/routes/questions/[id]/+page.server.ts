@@ -5,7 +5,7 @@ import {
   candidateResponses,
   candidates,
 } from "@sc-election/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, asc } from "drizzle-orm";
 
 export async function load({ params }) {
   const questionId = parseInt(params.id);
@@ -40,8 +40,14 @@ export async function load({ params }) {
     .innerJoin(candidates, eq(candidateResponses.candidateId, candidates.id))
     .where(eq(candidateResponses.questionId, questionId));
 
+  const allQuestions = await db
+    .select({ id: questions.id })
+    .from(questions)
+    .orderBy(asc(questions.id));
+
   return {
     question,
     responses,
+    allQuestions,
   };
 }

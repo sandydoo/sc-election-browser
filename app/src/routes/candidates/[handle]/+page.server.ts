@@ -5,7 +5,7 @@ import {
   candidateResponses,
   questions,
 } from "@sc-election/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, sql, asc } from "drizzle-orm";
 
 export async function load({ params }) {
   const { handle } = params;
@@ -37,8 +37,14 @@ export async function load({ params }) {
     .innerJoin(questions, eq(candidateResponses.questionId, questions.id))
     .where(eq(candidateResponses.candidateId, candidate.id));
 
+  const allCandidates = await db
+    .select({ githubHandle: candidates.githubHandle })
+    .from(candidates)
+    .orderBy(asc(sql`lower(${candidates.githubHandle})`));
+
   return {
     candidate,
     responses,
+    allCandidates,
   };
 }
