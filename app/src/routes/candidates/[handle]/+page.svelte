@@ -26,6 +26,13 @@
       JSON.stringify(collapsed),
     );
   }
+
+  function handleKeyDown(event: KeyboardEvent, section: string) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggleSection(section);
+    }
+  }
 </script>
 
 <div class="font-sans">
@@ -143,27 +150,30 @@
     <!-- Motivation -->
     {#if data.candidate.motivation}
       <section class="mb-16">
-        <h2
-          onclick={() => toggleSection("motivation")}
-          class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 flex justify-between items-center cursor-pointer"
-        >
-          <span>Motivation</span>
-          <span
-            class="p-1 transition-transform duration-200"
-            style="transform: rotate({collapsed.motivation ? -90 : 0}deg)"
-            aria-label={collapsed.motivation ? "Expand" : "Collapse"}
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
+          <button
+            onclick={() => toggleSection("motivation")}
+            onkeydown={(e) => handleKeyDown(e, "motivation")}
+            class="w-full flex justify-between items-center cursor-pointer text-left"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
+            <span>Motivation</span>
+            <span
+              class="p-1 transition-transform duration-200"
+              style="transform: rotate({collapsed.motivation ? -90 : 0}deg)"
+              aria-label={collapsed.motivation ? "Expand" : "Collapse"}
             >
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
         </h2>
         {#if !collapsed.motivation}
           <div class="prose max-w-none">
@@ -176,27 +186,30 @@
     <!-- What I Will Do -->
     {#if data.candidate.whatIWillDo}
       <section class="mb-16">
-        <h2
-          onclick={() => toggleSection("whatIWillDo")}
-          class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 flex justify-between items-center cursor-pointer"
-        >
-          <span>What I will do</span>
-          <span
-            class="p-1 transition-transform duration-200"
-            style="transform: rotate({collapsed.whatIWillDo ? -90 : 0}deg)"
-            aria-label={collapsed.whatIWillDo ? "Expand" : "Collapse"}
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
+          <button
+            onclick={() => toggleSection("whatIWillDo")}
+            onkeydown={(e) => handleKeyDown(e, "whatIWillDo")}
+            class="w-full flex justify-between items-center cursor-pointer text-left"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
+            <span>What I will do</span>
+            <span
+              class="p-1 transition-transform duration-200"
+              style="transform: rotate({collapsed.whatIWillDo ? -90 : 0}deg)"
+              aria-label={collapsed.whatIWillDo ? "Expand" : "Collapse"}
             >
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
         </h2>
         {#if !collapsed.whatIWillDo}
           <div class="prose max-w-none">
@@ -209,27 +222,30 @@
     <!-- What I Have Done -->
     {#if data.candidate.whatIHaveDone}
       <section class="mb-16">
-        <h2
-          onclick={() => toggleSection("whatIHaveDone")}
-          class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 flex justify-between items-center cursor-pointer"
-        >
-          <span>What I have done</span>
-          <span
-            class="p-1 transition-transform duration-200"
-            style="transform: rotate({collapsed.whatIHaveDone ? -90 : 0}deg)"
-            aria-label={collapsed.whatIHaveDone ? "Expand" : "Collapse"}
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
+          <button
+            onclick={() => toggleSection("whatIHaveDone")}
+            onkeydown={(e) => handleKeyDown(e, "whatIHaveDone")}
+            class="w-full flex justify-between items-center cursor-pointer text-left"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
+            <span>What I have done</span>
+            <span
+              class="p-1 transition-transform duration-200"
+              style="transform: rotate({collapsed.whatIHaveDone ? -90 : 0}deg)"
+              aria-label={collapsed.whatIHaveDone ? "Expand" : "Collapse"}
             >
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
         </h2>
         {#if !collapsed.whatIHaveDone}
           <div class="prose max-w-none">
@@ -242,17 +258,54 @@
     <!-- Conflict of Interest -->
     {#if data.candidate.conflictOfInterest}
       <section class="mb-16">
-        <h2
-          onclick={() => toggleSection("conflictOfInterest")}
-          class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 flex justify-between items-center cursor-pointer"
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
+          <button
+            onclick={() => toggleSection("conflictOfInterest")}
+            onkeydown={(e) => handleKeyDown(e, "conflictOfInterest")}
+            class="w-full flex justify-between items-center cursor-pointer text-left"
+          >
+            <span>Conflict of interest</span>
+            <span
+              class="p-1 transition-transform duration-200"
+              style="transform: rotate({collapsed.conflictOfInterest
+                ? -90
+                : 0}deg)"
+              aria-label={collapsed.conflictOfInterest ? "Expand" : "Collapse"}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
+        </h2>
+        {#if !collapsed.conflictOfInterest}
+          <div class="prose max-w-none">
+            {@html renderMarkdown(data.candidate.conflictOfInterest)}
+          </div>
+        {/if}
+      </section>
+    {/if}
+
+    <!-- Responses -->
+    <section>
+      <h2 class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4">
+        <button
+          onclick={() => toggleSection("responses")}
+          onkeydown={(e) => handleKeyDown(e, "responses")}
+          class="w-full flex justify-between items-center cursor-pointer text-left"
         >
-          <span>Conflict of interest</span>
+          <span>Question responses ({data.responses.length})</span>
           <span
             class="p-1 transition-transform duration-200"
-            style="transform: rotate({collapsed.conflictOfInterest
-              ? -90
-              : 0}deg)"
-            aria-label={collapsed.conflictOfInterest ? "Expand" : "Collapse"}
+            style="transform: rotate({collapsed.responses ? -90 : 0}deg)"
+            aria-label={collapsed.responses ? "Expand" : "Collapse"}
           >
             <svg
               width="24"
@@ -265,38 +318,7 @@
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </span>
-        </h2>
-        {#if !collapsed.conflictOfInterest}
-          <div class="prose max-w-none">
-            {@html renderMarkdown(data.candidate.conflictOfInterest)}
-          </div>
-        {/if}
-      </section>
-    {/if}
-
-    <!-- Responses -->
-    <section>
-      <h2
-        onclick={() => toggleSection("responses")}
-        class="text-3xl font-bold mb-6 border-b-2 border-black dark:border-white pb-4 flex justify-between items-center cursor-pointer"
-      >
-        <span>Question responses ({data.responses.length})</span>
-        <span
-          class="p-1 transition-transform duration-200"
-          style="transform: rotate({collapsed.responses ? -90 : 0}deg)"
-          aria-label={collapsed.responses ? "Expand" : "Collapse"}
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </span>
+        </button>
       </h2>
       {#if !collapsed.responses}
         <div class="space-y-12">
