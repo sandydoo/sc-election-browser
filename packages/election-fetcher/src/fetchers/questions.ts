@@ -17,6 +17,11 @@ export async function fetchQuestions() {
     console.log(`Found ${issues.length} question issues`);
 
     for (const issue of issues) {
+      if (issue.state === 'closed') {
+        console.log(`Skipping closed issue #${issue.number}: ${issue.title}`);
+        continue;
+      }
+
       console.log(`Processing issue #${issue.number}: ${issue.title}`);
 
       let body = issue.body || null;
