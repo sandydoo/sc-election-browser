@@ -12,16 +12,16 @@
 
   $effect(() => {
     const html = document.documentElement;
-    html.classList.remove('dark', 'light');
+    html.classList.remove("dark", "light");
 
-    if (themeState.preference === 'system') {
-      if (themeState.effective === 'dark') {
-        html.classList.add('dark');
+    if (themeState.preference === "system") {
+      if (themeState.effective === "dark") {
+        html.classList.add("dark");
       }
-    } else if (themeState.preference === 'light') {
-      html.classList.add('light');
-    } else if (themeState.preference === 'dark') {
-      html.classList.add('dark');
+    } else if (themeState.preference === "light") {
+      html.classList.add("light");
+    } else if (themeState.preference === "dark") {
+      html.classList.add("dark");
     }
   });
 </script>
@@ -31,22 +31,15 @@
 </svelte:head>
 
 <div class="min-h-screen bg-white dark:bg-black text-black dark:text-white">
-    {@render children?.()}
+  {@render children?.()}
 
-    <footer class="max-w-7xl mx-auto mt-24 px-8 py-12">
-      <p class="text-sm mb-6">
-      This is an unofficial resource to help browse information about the NixOS
-      Steering Committee Election.
+  <footer id="footer-section" tabindex="-1" class="max-w-7xl mx-auto mt-24 px-8 py-12 outline-none">
+    <p class="text-sm mb-6">
+      This is an unofficial resource to help voters browse information about the
+      NixOS Steering Committee Election.
     </p>
     <div class="flex gap-8 text-sm items-center">
-      <a
-        href="https://github.com/NixOS/SC-election-2025"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="underline hover:no-underline"
-      >
-        Election Repository
-      </a>
+      <ThemeToggle />
       <a
         href="https://github.com/sandydoo/sc-election-browser"
         target="_blank"
@@ -55,7 +48,6 @@
       >
         View Source
       </a>
-      <ThemeToggle />
     </div>
     <p class="text-xs text-gray-600 dark:text-gray-400 mt-6">
       Data is queried from the <a

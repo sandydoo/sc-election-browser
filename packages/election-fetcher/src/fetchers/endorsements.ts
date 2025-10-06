@@ -85,6 +85,7 @@ export async function fetchEndorsements() {
           .update(candidates)
           .set({
             nominatedBy,
+            nominationPrNumber: pr.number,
             endorsers: uniqueEndorsers,
             updatedAt: new Date(),
           })

@@ -13,6 +13,7 @@ export const candidates = sqliteTable("candidates", {
   whatIHaveDone: text("what_i_have_done"),
   personalStatement: text("personal_statement"),
   nominatedBy: text("nominated_by", { length: 100 }),
+  nominationPrNumber: integer("nomination_pr_number"),
   endorsers: text("endorsers", { mode: "json" }).$type<string[]>(),
   createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(
     () => new Date(),
