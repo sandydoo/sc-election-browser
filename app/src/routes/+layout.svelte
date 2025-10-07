@@ -44,14 +44,6 @@
     </p>
     <div class="flex gap-8 text-sm items-center">
       <ThemeToggle />
-      <a
-        href="https://github.com/sandydoo/sc-election-browser"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="underline hover:no-underline"
-      >
-        View Source
-      </a>
     </div>
     <p class="text-xs text-gray-600 dark:text-gray-400 mt-6">
       Data is queried from the <a
@@ -62,6 +54,19 @@
       >
         NixOS/SC-election-2025 repository
       </a> and updated every 30 minutes.
+    </p>
+    <p class="text-xs text-gray-600 dark:text-gray-400 mt-4 space-x-4">
+      <a
+        href="https://github.com/sandydoo/sc-election-browser"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline hover:no-underline"
+      >
+        View Source
+      </a>
+      <a href="/privacy" class="underline hover:no-underline">
+        Privacy Notice
+      </a>
     </p>
   </footer>
 </div>
