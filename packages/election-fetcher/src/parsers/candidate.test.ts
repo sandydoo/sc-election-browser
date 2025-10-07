@@ -132,7 +132,9 @@ I want to contribute to the community.
 
       expect(result.conflictOfInterest).toBe("None");
       expect(result.motivation).toContain("This is my motivation content.");
-      expect(result.motivation).toContain("I want to contribute to the community.");
+      expect(result.motivation).toContain(
+        "I want to contribute to the community.",
+      );
     });
 
     it("should handle pinpox-style format with subsections", () => {
@@ -167,7 +169,9 @@ What I will do:
       expect(result.metadata.githubHandle).toBe("pinpox");
       expect(result.metadata.email).toBe("test@example.com");
 
-      expect(result.conflictOfInterest).toContain("List any potential conflicts of interest");
+      expect(result.conflictOfInterest).toContain(
+        "List any potential conflicts of interest",
+      );
       expect(result.conflictOfInterest).toContain("- Example organization");
 
       expect(result.motivation).toContain("## What I have done");

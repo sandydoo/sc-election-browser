@@ -1,4 +1,8 @@
-{ lib, callPackage, pnpm }:
+{
+  lib,
+  callPackage,
+  pnpm,
+}:
 
 let
   src = lib.fileset.toSource {

@@ -53,9 +53,7 @@
       "indexes": {
         "candidate_responses_comment_id_unique": {
           "name": "candidate_responses_comment_id_unique",
-          "columns": [
-            "comment_id"
-          ],
+          "columns": ["comment_id"],
           "isUnique": true
         }
       },
@@ -64,12 +62,8 @@
           "name": "candidate_responses_question_id_questions_id_fk",
           "tableFrom": "candidate_responses",
           "tableTo": "questions",
-          "columnsFrom": [
-            "question_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["question_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -77,12 +71,8 @@
           "name": "candidate_responses_candidate_id_candidates_id_fk",
           "tableFrom": "candidate_responses",
           "tableTo": "candidates",
-          "columnsFrom": [
-            "candidate_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["candidate_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -189,9 +179,7 @@
       "indexes": {
         "candidates_github_handle_unique": {
           "name": "candidates_github_handle_unique",
-          "columns": [
-            "github_handle"
-          ],
+          "columns": ["github_handle"],
           "isUnique": true
         }
       },
@@ -256,9 +244,7 @@
       "indexes": {
         "questions_issue_number_unique": {
           "name": "questions_issue_number_unique",
-          "columns": [
-            "issue_number"
-          ],
+          "columns": ["issue_number"],
           "isUnique": true
         }
       },

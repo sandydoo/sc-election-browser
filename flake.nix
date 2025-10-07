@@ -9,7 +9,13 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, srvos, disko }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      srvos,
+      disko,
+    }:
     let
       systems = [
         "x86_64-linux"
@@ -20,23 +26,23 @@
       forAllSystems =
         f:
         builtins.listToAttrs (
-          map
-            (name: {
-              inherit name;
-              value = f name;
-            })
-            systems
+          map (name: {
+            inherit name;
+            value = f name;
+          }) systems
         );
     in
     {
-      packages = forAllSystems (system:
+      packages = forAllSystems (
+        system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          workspace = pkgs.callPackage ./workspace.nix {};
+          workspace = pkgs.callPackage ./workspace.nix { };
         in
         {
           inherit (workspace) sc-election-app sc-election-fetcher;
-        });
+        }
+      );
 
       nixosConfigurations.sc-election-server = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";

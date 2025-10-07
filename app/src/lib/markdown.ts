@@ -68,7 +68,7 @@ function configureMarked(footnotePrefix?: string) {
 
 export function renderMarkdown(
   content: string | null,
-  options?: { footnotePrefix?: string }
+  options?: { footnotePrefix?: string },
 ): string {
   if (!content) return "";
   const marked = configureMarked(options?.footnotePrefix);

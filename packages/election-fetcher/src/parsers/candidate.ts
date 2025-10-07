@@ -142,7 +142,8 @@ export function parseCandidateMarkdown(
 
   // Use dedicated parser for pinpox
   if (metadata.githubHandle === "pinpox") {
-    const { conflictOfInterest, motivation } = parsePinpoxFormat(markdownContent);
+    const { conflictOfInterest, motivation } =
+      parsePinpoxFormat(markdownContent);
     return {
       metadata: metadata as CandidateMetadata,
       conflictOfInterest,
@@ -156,20 +157,22 @@ export function parseCandidateMarkdown(
   const motivationParts: string[] = [];
 
   for (const section of sections) {
-    if (
-      /^#{1,3}\s+Conflict of interest/i.test(section)
-    ) {
+    if (/^#{1,3}\s+Conflict of interest/i.test(section)) {
       conflictOfInterest = section
         .replace(/^#{0,3}\s*Conflict of interest[^\n]*\n+/i, "")
         .trim();
     } else if (/^#{1,3}\s+Motivation/i.test(section)) {
       // Remove the "Motivation..." header and just keep content
-      const content = section.replace(/^#{1,3}\s+Motivation[^\n]*\n+/i, "").trim();
+      const content = section
+        .replace(/^#{1,3}\s+Motivation[^\n]*\n+/i, "")
+        .trim();
       if (content) {
         motivationParts.push(content);
       }
     } else if (
-      /^#{1,3}\s+What I('ll|ll| will| would|'ve|ve| have) do(ne)?/i.test(section)
+      /^#{1,3}\s+What I('ll|ll| will| would|'ve|ve| have) do(ne)?/i.test(
+        section,
+      )
     ) {
       motivationParts.push(section);
     } else if (/^#{1,3}\s+/.test(section)) {
@@ -211,7 +214,10 @@ export function parseCandidateMarkdown(
         currentContent = [];
       } else if (/^motivation/i.test(trimmed)) {
         // Save previous section if any
-        if (currentSection === "conflict-of-interest" && currentContent.length > 0) {
+        if (
+          currentSection === "conflict-of-interest" &&
+          currentContent.length > 0
+        ) {
           conflictOfInterest = currentContent.join("\n").trim();
         }
         currentSection = "motivation";
