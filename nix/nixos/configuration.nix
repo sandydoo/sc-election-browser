@@ -13,13 +13,22 @@ let
 in
 {
 
+  systemd.sockets.sc-election-app = {
+    description = "SC Election Browser Application Socket";
+    wantedBy = [ "sockets.target" ];
+    socketConfig = {
+      ListenStream = "127.0.0.1:3000";
+      Accept = false;
+    };
+  };
+
   systemd.services.sc-election-app = {
     description = "SC Election Browser Application";
-    wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
+    requires = [ "sc-election-app.socket" ];
 
     serviceConfig = {
-      Type = "simple";
+      Type = "notify";
       ExecStart = "${pkgs.nodejs}/bin/node ${sc-election-app}/lib/app";
       Restart = "always";
       RestartSec = "10s";
@@ -29,7 +38,7 @@ in
       WorkingDirectory = stateDir;
       Environment = [
         "NODE_ENV=production"
-        "PORT=3000"
+        "IDLE_TIMEOUT=60"
         "DATABASE_URL=${databaseUrl}"
       ];
     };
