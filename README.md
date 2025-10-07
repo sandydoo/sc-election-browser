@@ -40,6 +40,15 @@ Populate the database:
 pnpm fetch:all
 ```
 
+## API Endpoints
+
+The application provides JSON API endpoints for programmatic access:
+
+- `GET /api/candidates` - List all candidates
+- `GET /api/candidates/[handle]` - Get candidate by GitHub handle
+- `GET /api/questions` - List all questions
+- `GET /api/questions/[id]` - Get question by ID
+
 ## Production
 
 Build the production artifacts:
