@@ -15,4 +15,5 @@ const client = createClient({
 
 export const db = drizzle(client, { schema });
 
-await migrate(db, { migrationsFolder: './drizzle' });
+const migrationsFolder = process.env.MIGRATIONS_DIR || `${process.env.DEVENV_ROOT}/drizzle`;
+await migrate(db, { migrationsFolder });
