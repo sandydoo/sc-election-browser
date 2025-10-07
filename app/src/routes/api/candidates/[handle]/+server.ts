@@ -27,7 +27,6 @@ export async function GET({ params }) {
       commentId: candidateResponses.commentId,
       createdAt: candidateResponses.createdAt,
       question: {
-        id: questions.id,
         issueNumber: questions.issueNumber,
         title: questions.title,
         body: questions.body,

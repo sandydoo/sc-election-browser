@@ -110,11 +110,11 @@
             <li class="py-2">
               <div
                 class="block border-1 border-transparent hover:border-black dark:hover:border-white p-4 -m-4 transition-colors cursor-pointer"
-                onclick={() => goto(`/questions/${question.id}`)}
+                onclick={() => goto(`/questions/${question.issueNumber}`)}
                 role="link"
                 tabindex="0"
                 onkeydown={(e) =>
-                  e.key === "Enter" && goto(`/questions/${question.id}`)}
+                  e.key === "Enter" && goto(`/questions/${question.issueNumber}`)}
               >
                 <p
                   class="text-sm text-gray-700 dark:text-gray-300 mb-2 space-x-2"

@@ -320,7 +320,7 @@
               </p>
               <h3 class="text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4">
                 <a
-                  href="/questions/{response.question.id}"
+                  href="/questions/{response.question.issueNumber}"
                   class="hover:underline"
                 >
                   {response.question.title}
@@ -329,7 +329,7 @@
               {#if response.response}
                 <div class="prose max-w-none">
                   {@html renderMarkdown(response.response, {
-                    footnotePrefix: `q${response.question.id}`,
+                    footnotePrefix: `q${response.question.issueNumber}`,
                   })}
                 </div>
               {/if}

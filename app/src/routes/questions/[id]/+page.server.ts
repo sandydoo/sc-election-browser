@@ -8,16 +8,16 @@ import {
 import { eq, asc } from "drizzle-orm";
 
 export async function load({ params }) {
-  const questionId = parseInt(params.id);
+  const issueNumber = parseInt(params.id);
 
-  if (isNaN(questionId)) {
+  if (isNaN(issueNumber)) {
     throw error(400, "Invalid question ID");
   }
 
   const [question] = await db
     .select()
     .from(questions)
-    .where(eq(questions.id, questionId))
+    .where(eq(questions.issueNumber, issueNumber))
     .limit(1);
 
   if (!question) {
@@ -38,12 +38,12 @@ export async function load({ params }) {
     })
     .from(candidateResponses)
     .innerJoin(candidates, eq(candidateResponses.candidateId, candidates.id))
-    .where(eq(candidateResponses.questionId, questionId));
+    .where(eq(candidateResponses.questionId, question.id));
 
   const allQuestions = await db
-    .select({ id: questions.id })
+    .select({ issueNumber: questions.issueNumber })
     .from(questions)
-    .orderBy(asc(questions.id));
+    .orderBy(asc(questions.issueNumber));
 
   return {
     question,

@@ -26,20 +26,20 @@
     }
 
     const currentIndex = data.allQuestions.findIndex(
-      (q) => q.id === data.question.id,
+      (q) => q.issueNumber === data.question.issueNumber,
     );
 
     const hash = window.location.hash;
 
     if (event.key === "ArrowLeft" && currentIndex > 0) {
       const prevQuestion = data.allQuestions[currentIndex - 1];
-      goto(`/questions/${prevQuestion.id}${hash}`);
+      goto(`/questions/${prevQuestion.issueNumber}${hash}`);
     } else if (
       event.key === "ArrowRight" &&
       currentIndex < data.allQuestions.length - 1
     ) {
       const nextQuestion = data.allQuestions[currentIndex + 1];
-      goto(`/questions/${nextQuestion.id}${hash}`);
+      goto(`/questions/${nextQuestion.issueNumber}${hash}`);
     }
   }
 </script>
@@ -54,15 +54,15 @@
         <button
           class="px-3 py-1.5 border border-gray-400 dark:border-gray-600 rounded font-mono hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           disabled={data.allQuestions.findIndex(
-            (q) => q.id === data.question.id,
+            (q) => q.issueNumber === data.question.issueNumber,
           ) === 0}
           onclick={() => {
             const currentIndex = data.allQuestions.findIndex(
-              (q) => q.id === data.question.id,
+              (q) => q.issueNumber === data.question.issueNumber,
             );
             if (currentIndex > 0) {
               const prevQuestion = data.allQuestions[currentIndex - 1];
-              goto(`/questions/${prevQuestion.id}${window.location.hash}`);
+              goto(`/questions/${prevQuestion.issueNumber}${window.location.hash}`);
             }
           }}
           aria-label="Previous question"
@@ -72,16 +72,16 @@
         <button
           class="px-3 py-1.5 border border-gray-400 dark:border-gray-600 rounded font-mono hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           disabled={data.allQuestions.findIndex(
-            (q) => q.id === data.question.id,
+            (q) => q.issueNumber === data.question.issueNumber,
           ) ===
             data.allQuestions.length - 1}
           onclick={() => {
             const currentIndex = data.allQuestions.findIndex(
-              (q) => q.id === data.question.id,
+              (q) => q.issueNumber === data.question.issueNumber,
             );
             if (currentIndex < data.allQuestions.length - 1) {
               const nextQuestion = data.allQuestions[currentIndex + 1];
-              goto(`/questions/${nextQuestion.id}${window.location.hash}`);
+              goto(`/questions/${nextQuestion.issueNumber}${window.location.hash}`);
             }
           }}
           aria-label="Next question"
