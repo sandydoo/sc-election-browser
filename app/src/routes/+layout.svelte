@@ -33,7 +33,11 @@
 <div class="min-h-screen bg-white dark:bg-black text-black dark:text-white">
   {@render children?.()}
 
-  <footer id="footer-section" tabindex="-1" class="max-w-7xl mx-auto mt-24 px-8 py-12 outline-none">
+  <footer
+    id="footer-section"
+    tabindex="-1"
+    class="max-w-7xl mx-auto mt-24 px-8 py-12 outline-none"
+  >
     <p class="text-sm mb-6">
       This is an unofficial resource to help voters browse information about the
       NixOS Steering Committee Election.
@@ -56,7 +60,7 @@
         rel="noopener noreferrer"
         class="underline hover:no-underline"
       >
-        nixos-election repo
+        NixOS/SC-election-2025 repository
       </a> and updated every 30 minutes.
     </p>
   </footer>
