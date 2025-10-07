@@ -7,6 +7,6 @@
     "./schema": "./src/schema.ts"
   },
   "dependencies": {
-    "drizzle-orm": "^0.44.5"
+    "drizzle-orm": "^0.44.6"
   }
 }
