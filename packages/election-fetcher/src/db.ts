@@ -1,5 +1,6 @@
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
+import { migrate } from "drizzle-orm/libsql/migrator";
 import * as schema from "@sc-election/db/schema";
 
 const DATABASE_URL = process.env.DATABASE_URL;
@@ -13,3 +14,5 @@ const client = createClient({
 });
 
 export const db = drizzle(client, { schema });
+
+await migrate(db, { migrationsFolder: './drizzle' });
