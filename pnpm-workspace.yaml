@@ -2,6 +2,8 @@ packages:
   - app
   - packages/*
 
+injectWorkspacePackages: true
+
 onlyBuiltDependencies:
   - esbuild
 
@@ -9,3 +11,4 @@ onlyBuiltonlyBuiltDependencies:
   - '@tailwindcss/oxide'
 
 updateNotifier: false
+

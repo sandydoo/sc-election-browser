@@ -6,6 +6,7 @@ export default defineConfig({
   dts: false,
   clean: true,
   shims: true,
+  noExternal: [/@sc-election\/.*/],
   banner: {
     js: "#!/usr/bin/env node",
   },

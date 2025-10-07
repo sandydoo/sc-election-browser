@@ -23,6 +23,7 @@ stdenv.mkDerivation (finalAttrs: {
     runHook preBuild
 
     export DATABASE_URL="file:local.db"
+    export MIGRATIONS_DIR="$src/drizzle"
 
     pnpm --filter @sc-election/app exec svelte-kit sync
     pnpm --filter @sc-election/app build
@@ -33,8 +34,16 @@ stdenv.mkDerivation (finalAttrs: {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/lib
-    cp -r app/build $out/lib/app
+    mkdir -p $out/lib/app
+
+    # Use pnpm deploy to create production bundle with resolved dependencies
+    pnpm --filter @sc-election/app deploy --prod --ignore-scripts $out/lib/app
+
+    # Copy build output
+    cp -r app/build/* $out/lib/app/
+
+    # Copy migration files
+    cp -r drizzle $out/lib/migrations
 
     runHook postInstall
   '';

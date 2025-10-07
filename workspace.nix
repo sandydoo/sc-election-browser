@@ -7,6 +7,7 @@ let
       ./package.json
       ./pnpm-workspace.yaml
       ./pnpm-lock.yaml
+      ./drizzle
       ./drizzle.config.ts
       ./eslint.config.mts
       ./app

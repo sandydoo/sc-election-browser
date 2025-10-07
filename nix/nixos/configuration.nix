@@ -40,6 +40,7 @@ in
         "NODE_ENV=production"
         "IDLE_TIMEOUT=60"
         "DATABASE_URL=${databaseUrl}"
+        "MIGRATIONS_DIR=${sc-election-app}/lib/migrations"
       ];
     };
   };
@@ -56,7 +57,9 @@ in
       StateDirectory = "sc-election";
       WorkingDirectory = stateDir;
       Environment = [
+        "NODE_ENV=production"
         "DATABASE_URL=${databaseUrl}"
+        "MIGRATIONS_DIR=${sc-election-app}/lib/migrations"
       ];
       EnvironmentFile = "/run/secrets/sc-election-fetcher";
     };

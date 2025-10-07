@@ -24,6 +24,9 @@ stdenv.mkDerivation (finalAttrs: {
   buildPhase = ''
     runHook preBuild
 
+    export DATABASE_URL="file:local.db"
+    export MIGRATIONS_DIR="$src/drizzle"
+
     pnpm --filter @sc-election/fetcher build
 
     runHook postBuild
@@ -32,13 +35,23 @@ stdenv.mkDerivation (finalAttrs: {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/bin
-    cp packages/election-fetcher/dist/cli.js $out/bin/election-fetcher
+    mkdir -p $out/lib/fetcher
 
-    substituteInPlace $out/bin/election-fetcher \
+    # Use pnpm deploy to create production bundle with resolved dependencies
+    pnpm --filter @sc-election/fetcher deploy --prod --ignore-scripts $out/lib/fetcher
+
+    # Copy the built CLI (already compiled from TypeScript in buildPhase)
+    cp packages/election-fetcher/dist/cli.js $out/lib/fetcher/cli.js
+
+    # Create wrapper script in bin
+    mkdir -p $out/bin
+    substituteInPlace $out/lib/fetcher/cli.js \
       --replace-fail "/usr/bin/env node" "${nodejs}/bin/node"
 
-    chmod +x $out/bin/election-fetcher
+    ln -s $out/lib/fetcher/cli.js $out/bin/election-fetcher
+
+    # Copy migration files
+    cp -r drizzle $out/lib/migrations
 
     runHook postInstall
   '';
