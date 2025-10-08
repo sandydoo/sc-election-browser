@@ -36,7 +36,7 @@
   <footer
     id="footer-section"
     tabindex="-1"
-    class="max-w-7xl mx-auto mt-24 px-8 py-12 outline-none"
+    class="max-w-7xl mx-auto mt-24 px-4 md:px-6 lg:px-8 py-12 outline-none"
   >
     <p class="text-sm mb-6">
       This is an unofficial resource to help voters browse information about the
@@ -52,8 +52,8 @@
         rel="noopener noreferrer"
         class="underline hover:no-underline"
       >
-        NixOS/SC-election-2025 repository
-      </a> and updated every 30 minutes.
+        NixOS/SC-election-2025
+      </a> repository and updated every 30 minutes.
     </p>
     <p class="text-xs text-gray-600 dark:text-gray-400 mt-4 space-x-4">
       <a
