@@ -2,6 +2,7 @@
   import { renderMarkdown } from "$lib/markdown";
   import { goto } from "$app/navigation";
   import HashLink from "$lib/components/HashLink.svelte";
+  import MetaTags from "$lib/components/MetaTags.svelte";
 
   let { data } = $props();
 
@@ -45,6 +46,16 @@
 </script>
 
 <svelte:window onkeydown={handleGlobalKeyDown} />
+
+<MetaTags
+  title={data.question.title}
+  description={`Question #${data.question.issueNumber} for NixOS SC candidates with ${data.responses.length} responses. ${data.question.askerHandle ? `Asked by @${data.question.askerHandle}` : ''}`}
+  ogImageParams={{
+    title: data.question.title,
+    description: `Issue #${data.question.issueNumber} • ${data.responses.length} responses`,
+    type: "question"
+  }}
+/>
 
 <div class="font-sans">
   <header class="max-w-7xl mx-auto py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-8">

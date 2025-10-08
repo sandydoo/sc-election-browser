@@ -4,6 +4,7 @@
   import { goto } from "$app/navigation";
   import HashLink from "$lib/components/HashLink.svelte";
   import CollapsibleHeader from "$lib/components/CollapsibleHeader.svelte";
+  import MetaTags from "$lib/components/MetaTags.svelte";
 
   let { data } = $props();
 
@@ -85,6 +86,16 @@
 </script>
 
 <svelte:window onkeydown={handleGlobalKeyDown} />
+
+<MetaTags
+  title={data.candidate.name}
+  description={`View ${data.candidate.name}'s nomination statement, responses to community questions, and more information about their candidacy for the NixOS Steering Committee.`}
+  ogImageParams={{
+    title: data.candidate.name,
+    description: `@${data.candidate.githubHandle} • Candidate for NixOS SC`,
+    type: "candidate"
+  }}
+/>
 
 <div class="font-sans">
   <header class="max-w-7xl mx-auto py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-8">

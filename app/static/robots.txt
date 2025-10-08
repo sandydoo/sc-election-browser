@@ -1,3 +1,2 @@
-# disallow all crawling and scraping
 User-agent: *
-Disallow: /
+Allow: /

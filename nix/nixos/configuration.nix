@@ -41,6 +41,7 @@ in
         "IDLE_TIMEOUT=60"
         "DATABASE_URL=${databaseUrl}"
         "MIGRATIONS_DIR=${sc-election-app}/lib/migrations"
+        "FONTS_DIR=${sc-election-app}/lib/app/client/fonts"
       ];
     };
   };

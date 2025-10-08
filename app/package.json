@@ -17,12 +17,14 @@
   },
   "dependencies": {
     "@libsql/client": "^0.15.15",
+    "@resvg/resvg-js": "^2.6.2",
     "@sc-election/db": "workspace:*",
     "drizzle-orm": "^0.44.6",
     "marked": "^16.3.0",
     "marked-footnote": "^1.4.0",
     "marked-gfm-heading-id": "^4.1.2",
-    "marked-smartypants": "^1.1.10"
+    "marked-smartypants": "^1.1.10",
+    "satori": "^0.18.3"
   },
   "devDependencies": {
     "@sveltejs/adapter-node": "^5.3.3",

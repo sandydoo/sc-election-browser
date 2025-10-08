@@ -25,7 +25,7 @@ let
     pname = "sc-election-deps";
     inherit version src;
     fetcherVersion = 2;
-    hash = "sha256-snLvAoHW02XrkUAbtcl18FTwgvy0sjijxWB5SCHQ+eE=";
+    hash = "sha256-PbopVeXUaZjHKFMuKFRKaW8PLHuW58R8s1rlIbdAFQw=";
   };
 in
 {

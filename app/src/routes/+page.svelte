@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import MetaTags from "$lib/components/MetaTags.svelte";
 
   let { data } = $props();
 
@@ -23,9 +24,18 @@
 
 <svelte:window onkeydown={handleKeydown} />
 
+<MetaTags
+  title="NixOS SC Election 2025"
+  description="Browse candidates, questions, and responses for the NixOS Steering Committee election."
+/>
+
 <div class="font-sans">
-  <header class="max-w-7xl mx-auto py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-8">
-    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-5 lg:mb-6">
+  <header
+    class="max-w-7xl mx-auto py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-8"
+  >
+    <h1
+      class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-5 lg:mb-6"
+    >
       NixOS Steering Committee Election 2025
     </h1>
     <p class="text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed">
@@ -78,7 +88,9 @@
                 <h3 class="text-lg md:text-xl lg:text-2xl font-bold mb-1">
                   {candidate.name}
                 </h3>
-                <p class="text-base md:text-lg text-blue-700 dark:text-blue-300">
+                <p
+                  class="text-base md:text-lg text-blue-700 dark:text-blue-300"
+                >
                   <a
                     href="https://github.com/{candidate.githubHandle}"
                     target="_blank"
@@ -114,7 +126,8 @@
                 role="link"
                 tabindex="0"
                 onkeydown={(e) =>
-                  e.key === "Enter" && goto(`/questions/${question.issueNumber}`)}
+                  e.key === "Enter" &&
+                  goto(`/questions/${question.issueNumber}`)}
               >
                 <p
                   class="text-sm text-gray-700 dark:text-gray-300 mb-2 space-x-2"
