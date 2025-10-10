@@ -1,7 +1,8 @@
 import { octokit, REPO_OWNER, REPO_NAME } from "../github.js";
 import { db } from "../db.js";
-import { candidates } from "@sc-election/db/schema";
+import { candidates, candidateResponses } from "@sc-election/db/schema";
 import { parseCandidateMarkdown } from "../parsers/candidate.js";
+import { inArray, notInArray } from "drizzle-orm";
 
 export async function fetchCandidates() {
   console.log("Fetching candidates from GitHub...");
@@ -25,6 +26,8 @@ export async function fetchCandidates() {
 
     console.log(`Found ${candidateFiles.length} candidate files`);
 
+    const candidateHandles: string[] = [];
+
     for (const file of candidateFiles) {
       console.log(`Processing ${file.name}...`);
 
@@ -43,6 +46,8 @@ export async function fetchCandidates() {
 
       try {
         const parsed = parseCandidateMarkdown(content, file.name);
+
+        candidateHandles.push(parsed.metadata.githubHandle);
 
         await db
           .insert(candidates)
@@ -73,6 +78,29 @@ export async function fetchCandidates() {
         );
       } catch (error) {
         console.error(`Error parsing ${file.name}:`, error);
+      }
+    }
+
+    if (candidateHandles.length > 0) {
+      const candidatesToDelete = await db
+        .select()
+        .from(candidates)
+        .where(notInArray(candidates.githubHandle, candidateHandles));
+
+      if (candidatesToDelete.length > 0) {
+        console.log(
+          `\n✗ Deleting ${candidatesToDelete.length} candidates (files removed)`,
+        );
+
+        const candidateIds = candidatesToDelete.map((c) => c.id);
+
+        await db
+          .delete(candidateResponses)
+          .where(inArray(candidateResponses.candidateId, candidateIds));
+
+        await db
+          .delete(candidates)
+          .where(notInArray(candidates.githubHandle, candidateHandles));
       }
     }
 

@@ -5,7 +5,7 @@ import {
   candidates,
   candidateResponses,
 } from "@sc-election/db/schema";
-import { eq } from "drizzle-orm";
+import { notInArray } from "drizzle-orm";
 
 export async function fetchResponses() {
   console.log("Fetching candidate responses from GitHub...");
@@ -24,6 +24,7 @@ export async function fetchResponses() {
     );
 
     let totalResponses = 0;
+    const validCommentIds: number[] = [];
 
     for (const question of allQuestions) {
       console.log(
@@ -50,6 +51,8 @@ export async function fetchResponses() {
           `  Found response from candidate @${candidate.githubHandle}`,
         );
 
+        validCommentIds.push(comment.id);
+
         await db
           .insert(candidateResponses)
           .values({
@@ -66,6 +69,23 @@ export async function fetchResponses() {
           });
 
         totalResponses++;
+      }
+    }
+
+    if (validCommentIds.length > 0) {
+      const responsesToDelete = await db
+        .select()
+        .from(candidateResponses)
+        .where(notInArray(candidateResponses.commentId, validCommentIds));
+
+      if (responsesToDelete.length > 0) {
+        console.log(
+          `\n✗ Deleting ${responsesToDelete.length} responses (comments removed)`,
+        );
+
+        await db
+          .delete(candidateResponses)
+          .where(notInArray(candidateResponses.commentId, validCommentIds));
       }
     }
 

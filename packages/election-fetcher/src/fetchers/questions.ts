@@ -1,6 +1,7 @@
 import { octokit, REPO_OWNER, REPO_NAME } from "../github.js";
 import { db } from "../db.js";
-import { questions } from "@sc-election/db/schema";
+import { questions, candidateResponses } from "@sc-election/db/schema";
+import { inArray, notInArray } from "drizzle-orm";
 
 export async function fetchQuestions() {
   console.log("Fetching questions from GitHub...");
@@ -16,11 +17,15 @@ export async function fetchQuestions() {
 
     console.log(`Found ${issues.length} question issues`);
 
+    const openQuestionNumbers: number[] = [];
+
     for (const issue of issues) {
       if (issue.state === "closed") {
         console.log(`Skipping closed issue #${issue.number}: ${issue.title}`);
         continue;
       }
+
+      openQuestionNumbers.push(issue.number);
 
       console.log(`Processing issue #${issue.number}: ${issue.title}`);
 
@@ -48,6 +53,29 @@ export async function fetchQuestions() {
         });
 
       console.log(`✓ Saved question #${issue.number}`);
+    }
+
+    if (openQuestionNumbers.length > 0) {
+      const questionsToDelete = await db
+        .select()
+        .from(questions)
+        .where(notInArray(questions.issueNumber, openQuestionNumbers));
+
+      if (questionsToDelete.length > 0) {
+        console.log(
+          `\n✗ Deleting ${questionsToDelete.length} questions (closed or removed)`,
+        );
+
+        const questionIds = questionsToDelete.map((q) => q.id);
+
+        await db
+          .delete(candidateResponses)
+          .where(inArray(candidateResponses.questionId, questionIds));
+
+        await db
+          .delete(questions)
+          .where(notInArray(questions.issueNumber, openQuestionNumbers));
+      }
     }
 
     console.log(`\nSuccessfully processed ${issues.length} questions`);
