@@ -1,5 +1,5 @@
 import { octokit, REPO_OWNER, REPO_NAME } from "../github.js";
-import { db } from "../db.js";
+import { db, updateLastFetchTime } from "../db.js";
 import {
   questions,
   candidates,
@@ -92,6 +92,7 @@ export async function fetchResponses() {
     console.log(
       `\n✓ Successfully processed ${totalResponses} candidate responses`,
     );
+    await updateLastFetchTime();
   } catch (error) {
     console.error("Error fetching responses:", error);
     throw error;

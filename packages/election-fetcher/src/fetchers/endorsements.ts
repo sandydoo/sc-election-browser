@@ -1,5 +1,5 @@
 import { octokit, REPO_OWNER, REPO_NAME } from "../github.js";
-import { db } from "../db.js";
+import { db, updateLastFetchTime } from "../db.js";
 import { candidates } from "@sc-election/db/schema";
 import { eq } from "drizzle-orm";
 
@@ -100,6 +100,7 @@ export async function fetchEndorsements() {
     }
 
     console.log(`\nSuccessfully processed ${nominationPRs.length} PRs`);
+    await updateLastFetchTime();
   } catch (error) {
     console.error("Error fetching endorsements:", error);
     throw error;

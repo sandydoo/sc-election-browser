@@ -1,5 +1,5 @@
 import { octokit, REPO_OWNER, REPO_NAME } from "../github.js";
-import { db } from "../db.js";
+import { db, updateLastFetchTime } from "../db.js";
 import { questions, candidateResponses } from "@sc-election/db/schema";
 import { inArray, notInArray } from "drizzle-orm";
 
@@ -79,6 +79,7 @@ export async function fetchQuestions() {
     }
 
     console.log(`\nSuccessfully processed ${issues.length} questions`);
+    await updateLastFetchTime();
   } catch (error) {
     console.error("Error fetching questions:", error);
     throw error;

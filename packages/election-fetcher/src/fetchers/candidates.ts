@@ -1,5 +1,5 @@
 import { octokit, REPO_OWNER, REPO_NAME } from "../github.js";
-import { db } from "../db.js";
+import { db, updateLastFetchTime } from "../db.js";
 import { candidates, candidateResponses } from "@sc-election/db/schema";
 import { parseCandidateMarkdown } from "../parsers/candidate.js";
 import { inArray, notInArray } from "drizzle-orm";
@@ -105,6 +105,7 @@ export async function fetchCandidates() {
     }
 
     console.log(`\nSuccessfully processed ${candidateFiles.length} candidates`);
+    await updateLastFetchTime();
   } catch (error) {
     console.error("Error fetching candidates:", error);
     throw error;

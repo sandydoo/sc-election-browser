@@ -46,3 +46,8 @@ export const candidateResponses = sqliteTable("candidate_responses", {
     () => new Date(),
   ),
 });
+
+export const metadata = sqliteTable("metadata", {
+  id: integer("id").primaryKey().$defaultFn(() => 1),
+  lastFetchedAt: integer("last_fetched_at", { mode: "timestamp" }),
+});

@@ -4,7 +4,31 @@
   import ThemeToggle from "$lib/components/ThemeToggle.svelte";
   import { themeState } from "$lib/theme.svelte";
 
-  let { children } = $props();
+  let { children, data } = $props();
+
+  function formatLastUpdated(isoString: string): string {
+    const date = new Date(isoString);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+
+    if (diffMins < 1) return "Last updated just now";
+    if (diffMins < 60)
+      return `Last updated ${diffMins} minute${diffMins === 1 ? "" : "s"} ago`;
+    if (diffHours < 24)
+      return `Last updated ${diffHours} hour${diffHours === 1 ? "" : "s"} ago`;
+    if (diffDays < 7)
+      return `Last updated ${diffDays} day${diffDays === 1 ? "" : "s"} ago`;
+
+    return `Last updated ${date.toLocaleDateString()}`;
+  }
+
+  function formatAbsoluteTime(isoString: string): string {
+    const date = new Date(isoString);
+    return date.toISOString();
+  }
 
   $effect(() => {
     themeState.init();
@@ -54,6 +78,12 @@
       >
         NixOS/SC-election-2025
       </a> repository and updated every 30 minutes.
+      {#if data.lastUpdatedAt}
+        <br />
+        <span title={formatAbsoluteTime(data.lastUpdatedAt)}>
+          {formatLastUpdated(data.lastUpdatedAt)}
+        </span>
+      {/if}
     </p>
     <p class="text-xs text-gray-600 dark:text-gray-400 mt-4 space-x-4">
       <a
