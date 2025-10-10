@@ -1,5 +1,5 @@
 import { db } from "$lib/server/db/index.js";
-import { candidates, questions } from "@sc-election/db/schema";
+import { candidates, questions } from "@sc-election/db";
 import { asc, sql } from "drizzle-orm";
 
 export async function load() {

@@ -1,6 +1,6 @@
 import { octokit, REPO_OWNER, REPO_NAME } from "../github.js";
 import { db, updateLastFetchTime } from "../db.js";
-import { candidates } from "@sc-election/db/schema";
+import { candidates } from "@sc-election/db";
 import { eq } from "drizzle-orm";
 
 export async function fetchEndorsements() {

@@ -4,7 +4,7 @@ import {
   candidates,
   candidateResponses,
   questions,
-} from "@sc-election/db/schema";
+} from "@sc-election/db";
 import { eq } from "drizzle-orm";
 
 export async function GET({ params }) {

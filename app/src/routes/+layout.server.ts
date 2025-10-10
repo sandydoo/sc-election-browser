@@ -1,5 +1,5 @@
 import { db } from "$lib/server/db/index.js";
-import { metadata } from "@sc-election/db/schema";
+import { metadata } from "@sc-election/db";
 
 export async function load() {
   const [info] = await db.select().from(metadata).limit(1);

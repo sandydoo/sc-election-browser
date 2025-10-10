@@ -1,1 +1,1 @@
-export * from "@sc-election/db/schema";
+export * from "@sc-election/db";

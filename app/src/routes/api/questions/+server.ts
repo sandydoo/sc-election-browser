@@ -1,6 +1,6 @@
 import { json } from "@sveltejs/kit";
 import { db } from "$lib/server/db/index.js";
-import { questions } from "@sc-election/db/schema";
+import { questions } from "@sc-election/db";
 
 export async function GET() {
   const allQuestions = await db.select().from(questions);

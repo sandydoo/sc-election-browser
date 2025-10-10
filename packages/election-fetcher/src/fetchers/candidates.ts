@@ -1,6 +1,6 @@
 import { octokit, REPO_OWNER, REPO_NAME } from "../github.js";
 import { db, updateLastFetchTime } from "../db.js";
-import { candidates, candidateResponses } from "@sc-election/db/schema";
+import { candidates, candidateResponses } from "@sc-election/db";
 import { parseCandidateMarkdown } from "../parsers/candidate.js";
 import { inArray, notInArray } from "drizzle-orm";
 

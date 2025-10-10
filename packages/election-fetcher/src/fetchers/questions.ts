@@ -1,6 +1,6 @@
 import { octokit, REPO_OWNER, REPO_NAME } from "../github.js";
 import { db, updateLastFetchTime } from "../db.js";
-import { questions, candidateResponses } from "@sc-election/db/schema";
+import { questions, candidateResponses } from "@sc-election/db";
 import { inArray, notInArray } from "drizzle-orm";
 
 export async function fetchQuestions() {

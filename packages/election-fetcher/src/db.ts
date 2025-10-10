@@ -1,8 +1,8 @@
 import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 import { migrate } from "drizzle-orm/libsql/migrator";
-import * as schema from "@sc-election/db/schema";
-import { metadata } from "@sc-election/db/schema";
+import * as schema from "@sc-election/db";
+import { metadata, configureSqlite } from "@sc-election/db";
 
 const DATABASE_URL = process.env.DATABASE_URL;
 
@@ -13,6 +13,8 @@ if (!DATABASE_URL) {
 const client = createClient({
   url: DATABASE_URL,
 });
+
+await configureSqlite(client);
 
 export const db = drizzle(client, { schema });
 
