@@ -1,10 +1,6 @@
 import { json, error } from "@sveltejs/kit";
 import { db } from "$lib/server/db/index.js";
-import {
-  candidates,
-  candidateResponses,
-  questions,
-} from "@sc-election/db";
+import { candidates, candidateResponses, questions } from "@sc-election/db";
 import { eq } from "drizzle-orm";
 
 export async function GET({ params }) {
