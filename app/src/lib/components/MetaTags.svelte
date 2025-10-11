@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
 
   interface Props {
     title: string;
@@ -25,10 +25,10 @@
     if (ogImageParams?.type) {
       params.set("type", ogImageParams.type);
     }
-    return `${$page.url.origin}/api/og?${params.toString()}`;
+    return `${page.url.origin}/api/og?${params.toString()}`;
   });
 
-  const canonicalUrl = $derived($page.url.href);
+  const canonicalUrl = $derived(page.url.href);
 </script>
 
 <svelte:head>
@@ -44,7 +44,7 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:domain" content={$page.url.hostname} />
+  <meta name="twitter:domain" content={page.url.hostname} />
   <meta name="twitter:url" content={canonicalUrl} />
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
