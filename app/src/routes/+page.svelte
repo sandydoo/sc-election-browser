@@ -25,7 +25,7 @@
 <svelte:window onkeydown={handleKeydown} />
 
 <MetaTags
-  title="NixOS SC Election 2025"
+  title="NixOS SC Election 2026"
   description="Browse candidates, questions, and responses for the NixOS Steering Committee election."
 />
 
@@ -36,7 +36,7 @@
     <h1
       class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-5 lg:mb-6"
     >
-      NixOS Steering Committee Election 2025
+      NixOS Steering Committee Election 2026
     </h1>
     <p class="text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed">
       Browse candidates, questions, and responses for the NixOS Steering
@@ -133,7 +133,7 @@
                   class="text-sm text-gray-700 dark:text-gray-300 mb-2 space-x-2"
                 >
                   <a
-                    href="https://github.com/NixOS/SC-election-2025/issues/{question.issueNumber}"
+                    href="https://github.com/NixOS/SC-election-2026/issues/{question.issueNumber}"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="underline hover:no-underline"

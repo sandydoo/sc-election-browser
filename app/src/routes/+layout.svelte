@@ -71,12 +71,12 @@
     </div>
     <p class="text-xs text-gray-600 dark:text-gray-400 mt-6">
       Data is queried from the <a
-        href="https://github.com/NixOS/SC-election-2025"
+        href="https://github.com/NixOS/SC-election-2026"
         target="_blank"
         rel="noopener noreferrer"
         class="underline hover:no-underline"
       >
-        NixOS/SC-election-2025
+        NixOS/SC-election-2026
       </a> repository and updated every 30 minutes.
       {#if data.lastUpdatedAt}
         <br />

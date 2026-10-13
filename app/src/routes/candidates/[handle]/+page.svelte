@@ -151,7 +151,7 @@
     </div>
     <p class="text-gray-700 dark:text-gray-300 space-x-4 mb-2">
       <a
-        href="https://github.com/NixOS/SC-election-2025/pull/{data.candidate
+        href="https://github.com/NixOS/SC-election-2026/pull/{data.candidate
           .nominationPrNumber}"
         target="_blank"
         rel="noopener noreferrer"
@@ -161,8 +161,8 @@
         PR #{data.candidate.nominationPrNumber}
       </a>
       <a
-        href="https://github.com/NixOS/SC-election-2025/blob/main/candidates/{data
-          .candidate.githubHandle}.md"
+        href="https://github.com/NixOS/SC-election-2026/blob/main/{data.candidate
+          .sourcePath ?? `candidates/${data.candidate.githubHandle}.md`}"
         target="_blank"
         rel="noopener noreferrer"
         class="underline hover:no-underline"
@@ -309,7 +309,7 @@
             <article>
               <p class="text-gray-700 dark:text-gray-300 space-x-4 mb-2">
                 <a
-                  href="https://github.com/NixOS/SC-election-2025/issues/{response
+                  href="https://github.com/NixOS/SC-election-2026/issues/{response
                     .question.issueNumber}"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -319,7 +319,7 @@
                   Issue #{response.question.issueNumber}
                 </a>
                 <a
-                  href="https://github.com/NixOS/SC-election-2025/issues/{response
+                  href="https://github.com/NixOS/SC-election-2026/issues/{response
                     .question.issueNumber}#issuecomment-{response.commentId}"
                   target="_blank"
                   rel="noopener noreferrer"

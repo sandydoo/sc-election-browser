@@ -63,12 +63,12 @@
         <ul class="list-disc pl-6 mb-4 space-y-2">
           <li>
             The <a
-              href="https://github.com/NixOS/SC-election-2025"
+              href="https://github.com/NixOS/SC-election-2026"
               target="_blank"
               rel="noopener noreferrer"
               class="text-blue-700 dark:text-blue-300 underline hover:no-underline"
             >
-              NixOS/SC-election-2025
+              NixOS/SC-election-2026
             </a> GitHub repository (public)
           </li>
         </ul>
@@ -104,7 +104,7 @@
           </a>
           or directly update your information in the
           <a
-            href="https://github.com/NixOS/SC-election-2025"
+            href="https://github.com/NixOS/SC-election-2026"
             target="_blank"
             rel="noopener noreferrer"
             class="text-blue-700 dark:text-blue-300 underline hover:no-underline"

@@ -1,6 +1,11 @@
 import { error } from "@sveltejs/kit";
 import { db } from "$lib/server/db/index.js";
-import { candidates, candidateResponses, questions } from "@sc-election/db";
+import {
+  candidates,
+  candidateHandleIs,
+  candidateResponses,
+  questions,
+} from "@sc-election/db";
 import { eq, sql, asc } from "drizzle-orm";
 
 export async function load({ params }) {
@@ -9,7 +14,7 @@ export async function load({ params }) {
   const [candidate] = await db
     .select()
     .from(candidates)
-    .where(eq(candidates.githubHandle, handle))
+    .where(candidateHandleIs(handle))
     .limit(1);
 
   if (!candidate) {

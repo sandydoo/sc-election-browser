@@ -103,7 +103,7 @@
     </div>
     <p class="text-gray-700 dark:text-gray-300 space-x-4">
       <a
-        href="https://github.com/NixOS/SC-election-2025/issues/{data.question
+        href="https://github.com/NixOS/SC-election-2026/issues/{data.question
           .issueNumber}"
         target="_blank"
         rel="noopener noreferrer"
@@ -163,7 +163,7 @@
             <div>
               <p class="text-gray-700 dark:text-gray-300 space-x-4">
                 <a
-                  href="https://github.com/NixOS/SC-election-2025/issues/{data
+                  href="https://github.com/NixOS/SC-election-2026/issues/{data
                     .question.issueNumber}#issuecomment-{response.commentId}"
                   target="_blank"
                   rel="noopener noreferrer"

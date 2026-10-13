@@ -1,0 +1,1 @@
+ALTER TABLE `candidates` ADD `source_path` text(200);

@@ -8,7 +8,7 @@ const width = 1200;
 const height = 630;
 
 export const GET: RequestHandler = async ({ url }) => {
-  const title = url.searchParams.get("title") || "NixOS SC Election 2025";
+  const title = url.searchParams.get("title") || "NixOS SC Election 2026";
   const description =
     url.searchParams.get("description") ||
     "Browse candidates, questions, and responses";
@@ -85,7 +85,7 @@ export const GET: RequestHandler = async ({ url }) => {
                 fontSize: 28,
                 color: "#6b7280",
               },
-              children: "NixOS Steering Committee Election 2025",
+              children: "NixOS Steering Committee Election 2026",
             },
           },
         ],

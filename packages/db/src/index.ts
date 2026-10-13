@@ -1,2 +1,3 @@
 export * from "./schema.js";
 export * from "./config.js";
+export * from "./queries.js";

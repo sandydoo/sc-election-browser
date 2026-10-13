@@ -11,4 +11,4 @@ export const octokit = new Octokit({
 });
 
 export const REPO_OWNER = "NixOS";
-export const REPO_NAME = "SC-election-2025";
+export const REPO_NAME = "SC-election-2026";

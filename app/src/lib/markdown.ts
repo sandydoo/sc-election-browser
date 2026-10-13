@@ -4,7 +4,7 @@ import { markedSmartypants } from "marked-smartypants";
 import { gfmHeadingId } from "marked-gfm-heading-id";
 
 const REPO_OWNER = "NixOS";
-const REPO_NAME = "SC-election-2025";
+const REPO_NAME = "SC-election-2026";
 
 const issueExtension = {
   name: "issue",

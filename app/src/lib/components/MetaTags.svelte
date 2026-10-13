@@ -14,9 +14,9 @@
   let { title, description, ogImageParams }: Props = $props();
 
   const fullTitle =
-    title === "NixOS SC Election 2025"
+    title === "NixOS SC Election 2026"
       ? title
-      : `${title} | NixOS SC Election 2025`;
+      : `${title} | NixOS SC Election 2026`;
 
   const ogImageUrl = $derived(() => {
     const params = new URLSearchParams();

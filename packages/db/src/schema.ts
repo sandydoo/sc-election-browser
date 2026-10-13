@@ -3,6 +3,7 @@ import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
 export const candidates = sqliteTable("candidates", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   githubHandle: text("github_handle", { length: 100 }).notNull().unique(),
+  sourcePath: text("source_path", { length: 200 }),
   name: text("name", { length: 200 }).notNull(),
   email: text("email", { length: 200 }).notNull(),
   discourseHandle: text("discourse_handle", { length: 100 }),

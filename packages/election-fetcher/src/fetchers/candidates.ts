@@ -53,6 +53,7 @@ export async function fetchCandidates() {
           .insert(candidates)
           .values({
             githubHandle: parsed.metadata.githubHandle,
+            sourcePath: file.path,
             name: parsed.metadata.name,
             email: parsed.metadata.email,
             discourseHandle: parsed.metadata.discourseHandle || null,
@@ -63,6 +64,7 @@ export async function fetchCandidates() {
           .onConflictDoUpdate({
             target: candidates.githubHandle,
             set: {
+              sourcePath: file.path,
               name: parsed.metadata.name,
               email: parsed.metadata.email,
               discourseHandle: parsed.metadata.discourseHandle || null,
